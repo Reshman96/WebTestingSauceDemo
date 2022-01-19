@@ -2,6 +2,7 @@ package org.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.pom.inventoryPage.SLInventoryPage;
 
 public abstract class SitePage extends Page{
     private WebDriver driver;
