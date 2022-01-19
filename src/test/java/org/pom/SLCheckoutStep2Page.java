@@ -2,6 +2,7 @@ package org.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.pom.inventoryPage.SLInventoryPage;
 
 public class SLCheckoutStep2Page extends SitePage {
     private WebDriver driver;
@@ -13,21 +14,13 @@ public class SLCheckoutStep2Page extends SitePage {
         this.driver = driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    public Page goToInventoryPage() {
+    public SLInventoryPage goToInventoryPage() {
         driver.findElement(cancelButton).click();
         return new SLInventoryPage(driver);
     }
 
-    public Page goToConfirmationPage() {
+    public SLConfirmationOfOrderPage goToConfirmationPage() {
         driver.findElement(finishButton).click();
-        return new SLCheckoutStep2Page(driver);
+        return new SLConfirmationOfOrderPage(driver);
     }
 }
