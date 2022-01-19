@@ -1,4 +1,4 @@
 package org.pom;
 
-public abstract class SitePage {
+public abstract class SitePage extends Page{
 }
