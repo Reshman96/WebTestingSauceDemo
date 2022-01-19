@@ -10,6 +10,7 @@ public class SLCheckoutStep1Page extends Page {
     private WebDriver driver;
 
     public SLCheckoutStep1Page(WebDriver driver) {
+        super(new ChromeDriver());
         this.driver = driver;
     }
 
