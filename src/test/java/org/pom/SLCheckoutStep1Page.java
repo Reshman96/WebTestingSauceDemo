@@ -21,6 +21,7 @@ public class SLCheckoutStep1Page extends SitePage {
     }
 
     public void setFirstName(String firstName) {
+        driver.findElement(By.id("last-name")).sendKeys(firstName);
         this.firstName = firstName;
     }
 
@@ -29,6 +30,7 @@ public class SLCheckoutStep1Page extends SitePage {
     }
 
     public void setLastName(String lastName) {
+        driver.findElement(By.id("last-name")).sendKeys(lastName);
         this.lastName = lastName;
     }
 
@@ -37,18 +39,15 @@ public class SLCheckoutStep1Page extends SitePage {
     }
 
     public void setPostalCode(String postalCode) {
+        driver.findElement(By.id("postal-code")).sendKeys(postalCode);
         this.postalCode = postalCode;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public Page goToCheckoutStep2Page() {
+        if (!isAllFieldsFilled()) {
+            // needs to show an error message to user
+            return null;
+        }
         driver.findElement(continueButton).click();
         return new SLCheckoutStep2Page(driver);
     }
@@ -58,7 +57,7 @@ public class SLCheckoutStep1Page extends SitePage {
         return new SLCartPage(driver);
     }
 
-    public boolean isAnyFieldEmpty() {
+    public boolean isAllFieldsFilled() {
         boolean result = true;
         if (getFirstName() == null) {
             System.out.println("first name is empty!");
