@@ -12,7 +12,7 @@ public class SlLoginPage extends Page{
     By username;
     By password;
     By loginButton;
-    List<WebElement> givenUsernameList;
+    String[] givenUsernameList;
     String givenPassword;
 
     public SlLoginPage(WebDriver driver){
@@ -21,30 +21,36 @@ public class SlLoginPage extends Page{
         driver.get("https://www.saucedemo.com/");
     }
 
-    private void getUsernames(){
-        givenUsernameList = driver.findElements(By.id("login_credentials"));
+    private String[] getGivenUsernameList() {
+        String listofUsernames = driver.findElement(By.id("login_credentials")).getText();
+        givenUsernameList = listofUsernames.split("\n");
+        return givenUsernameList;
     }
     private String getPassword(){
         givenPassword = driver.findElement(By.className("login_password")).getText();
+        givenPassword = givenPassword.split("\n")[1];
         return givenPassword;
     }
     public SLInventoryPage Login(String username, String password){
         driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
-
         return new SLInventoryPage(driver);
     }
-    public void StandardUserLogin(){
-        Login(givenUsernameList.get(0).toString(), givenPassword);
+    public SLInventoryPage StandardUserLogin(){
+        return Login(getGivenUsernameList()[1], getPassword());
     }
-    public void LockedOutUserLogin(){
-        Login(givenUsernameList.get(1).toString(), givenPassword);
+
+    public SLInventoryPage LockedOutUserLogin(){
+        return Login(getGivenUsernameList()[2], getPassword());
     }
-    public void ProblemUserLogin(){
-        Login(givenUsernameList.get(2).toString(), givenPassword);
+
+    public SLInventoryPage ProblemUserLogin(){
+        return Login(getGivenUsernameList()[3], getPassword());
     }
-    public void PerformanceGlitchUserLogin(){
-        Login(givenUsernameList.get(3).toString(), givenPassword);
+
+    public SLInventoryPage PerformanceGlitchUserLogin(){
+        return Login(getGivenUsernameList()[4], getPassword());
     }
+
 }
