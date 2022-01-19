@@ -3,7 +3,7 @@ package org.pom;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SLCheckoutStep2Page extends Page {
+public class SLCheckoutStep2Page extends SitePage {
     private WebDriver driver;
 
     public SLCheckoutStep2Page(WebDriver driver) {
