@@ -18,12 +18,12 @@ public class SLIndividualItemPage extends SitePage {
         this.driver = driver;
     }
 
-    public void goToInventoryPage(){
-        driver.get("https://www.saucedemo.com/inventory.html");
+    public SLInventoryPage goToInventoryPage(){
+        return new SLInventoryPage(driver);
     }
 
-    public void goToCartPage(){
-        driver.get("https://www.saucedemo.com/cart.html");
+    public SLCartPage goToCartPage(){
+        return new SLCartPage(driver);
     }
 
 
