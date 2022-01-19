@@ -4,6 +4,7 @@ import org.PomUtility;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.pom.SLCartPage;
 import org.pom.SLIndividualItemPage;
 import org.pom.SlLoginPage;
 
@@ -11,6 +12,7 @@ public class IndividualItemPageTests {
     private static WebDriver driver;
     private SLIndividualItemPage slIndividualItemPage;
     private static SlLoginPage loginPage;
+    private SLCartPage slCartPage;
 
     @BeforeAll
     static void setupAll(){
@@ -25,6 +27,7 @@ public class IndividualItemPageTests {
         loginPage = new SlLoginPage(driver);
         loginPage.Login("standard_user", "secret_sauce");
         slIndividualItemPage = new SLIndividualItemPage(driver);
+        slCartPage = new SLCartPage(driver);
     }
 
     @Test
