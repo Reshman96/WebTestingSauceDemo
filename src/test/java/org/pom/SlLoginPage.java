@@ -46,8 +46,4 @@ public class SlLoginPage extends Page{
     public void PerformanceGlitchUserLogin(){
         Login(givenUsernameList.get(3).toString(), givenPassword);
     }
-
-
-
-
 }
