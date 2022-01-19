@@ -1,12 +1,15 @@
 package org.pom;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SLCheckoutStep1Page extends Page {
+public class SLCheckoutStep1Page extends SitePage {
     private String firstName;
     private String lastName;
     private String postalCode;
+    private By checkout = By.id("checkout");
+    private By cart = new By.ByClassName("shopping_cart_badge");
     private WebDriver driver;
 
     public SLCheckoutStep1Page(WebDriver driver) {
@@ -47,13 +50,13 @@ public class SLCheckoutStep1Page extends Page {
     }
 
     public Page goToCheckoutStep2Page() {
-        // temporarily returning new SLCheckoutStep1Page
-        return new SLCheckoutStep1Page(new ChromeDriver());
+        driver.findElement(checkout).click();
+        return new SLCheckoutStep2Page(driver);
     }
 
     public SLCartPage goToCart() {
-        // temporarily returning new SLCartPage
-        return new SLCartPage();
+        driver.findElement(cart).click();
+        return new SLCartPage(driver);
     }
 
     public boolean isAnyFieldEmpty() {
