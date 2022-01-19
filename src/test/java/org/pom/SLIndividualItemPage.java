@@ -28,5 +28,13 @@ public class SLIndividualItemPage extends SitePage {
         return new SLCartPage(driver);
     }
 
+    public void removeItem(){
+        driver.findElement(removeButton).click();
+    }
+
+    public void addItemToCart(){
+        driver.findElement(addToCartButton).click();
+    }
+
 
 }
