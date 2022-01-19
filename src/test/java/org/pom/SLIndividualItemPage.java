@@ -14,7 +14,7 @@ public class SLIndividualItemPage extends SitePage {
     private By backToProductsButton = new By.ById("back-to-products");
 
     public SLIndividualItemPage(WebDriver driver) {
-        /*super(driver);*/
+        super(driver);
         this.driver = driver;
     }
 
