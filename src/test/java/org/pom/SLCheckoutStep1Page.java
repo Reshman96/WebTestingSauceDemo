@@ -8,7 +8,7 @@ public class SLCheckoutStep1Page extends SitePage {
     private String firstName;
     private String lastName;
     private String postalCode;
-    private final By continueButton = By.id("continue");
+    private final By continueButton = new By.ById("continue");
     private final By cancelButton = new By.ById("cancel");
     private WebDriver driver;
 
@@ -22,7 +22,7 @@ public class SLCheckoutStep1Page extends SitePage {
     }
 
     private void setFirstName(String firstName) {
-        driver.findElement(By.id("last-name")).sendKeys(firstName);
+        driver.findElement(By.id("first-name")).sendKeys(firstName);
         this.firstName = firstName;
     }
 
