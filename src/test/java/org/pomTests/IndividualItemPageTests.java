@@ -27,7 +27,6 @@ public class IndividualItemPageTests {
         slIndividualItemPage = new SLIndividualItemPage(driver);
     }
 
-
     @Test
     @DisplayName("Is item added to cart")
     void isItemAddedToCart() {
@@ -47,8 +46,22 @@ public class IndividualItemPageTests {
         slIndividualItemPage.removeItemFromCart();
         itemsAfterRemoving = slIndividualItemPage.getNumberOfCartItems();
         Assertions.assertEquals(itemsBeforeRemoving-1, itemsAfterRemoving);
+        
+    }
 
+    @Test
+    @DisplayName("CheckBackToProductsButton")
+    void CheckBackToProductsButtonTest() {
+        slIndividualItemPage.goToInventoryPage();
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
+        
+    }
 
+    @Test
+    @DisplayName("Check go to cart page")
+    void checkGoToCartPageTest() {
+        slIndividualItemPage.goToCartPage();
+        Assertions.assertEquals("https://www.saucedemo.com/cart.html", driver.getCurrentUrl());
     }
 
 
