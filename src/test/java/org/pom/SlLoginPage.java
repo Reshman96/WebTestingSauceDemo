@@ -34,6 +34,18 @@ public class SlLoginPage extends Page{
 
         return new SLInventoryPage(driver);
     }
+    public void StandardUserLogin(){
+        Login(givenUsernameList.get(0).toString(), givenPassword);
+    }
+    public void LockedOutUserLogin(){
+        Login(givenUsernameList.get(1).toString(), givenPassword);
+    }
+    public void ProblemUserLogin(){
+        Login(givenUsernameList.get(2).toString(), givenPassword);
+    }
+    public void PerformanceGlitchUserLogin(){
+        Login(givenUsernameList.get(3).toString(), givenPassword);
+    }
 
 
 
