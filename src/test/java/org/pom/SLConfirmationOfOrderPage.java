@@ -9,6 +9,7 @@ public class SLConfirmationOfOrderPage extends SitePage {
     private WebDriver driver;
 
     public SLConfirmationOfOrderPage(WebDriver driver) {
+        super(driver);
         this.driver = driver;
     }
 
