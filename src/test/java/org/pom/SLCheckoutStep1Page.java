@@ -1,16 +1,18 @@
 package org.pom;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SLCheckoutStep1Page extends Page {
+public class SLCheckoutStep1Page extends SitePage {
     private String firstName;
     private String lastName;
     private String postalCode;
+    private final By continueButton = By.id("continue");
+    private final By cancelButton = new By.ById("cancel");
     private WebDriver driver;
 
     public SLCheckoutStep1Page(WebDriver driver) {
-        super(new ChromeDriver());
+        super(driver);
         this.driver = driver;
     }
 
@@ -47,17 +49,29 @@ public class SLCheckoutStep1Page extends Page {
     }
 
     public Page goToCheckoutStep2Page() {
-        // temporarily returning new SLCheckoutStep1Page
-        return new SLCheckoutStep1Page(new ChromeDriver());
+        driver.findElement(continueButton).click();
+        return new SLCheckoutStep2Page(driver);
     }
 
     public SLCartPage goToCart() {
-        // temporarily returning new SLCartPage
-        return new SLCartPage();
+        driver.findElement(cancelButton).click();
+        return new SLCartPage(driver);
     }
 
     public boolean isAnyFieldEmpty() {
-        // temporarily set to return true
-        return true;
+        boolean result = true;
+        if (getFirstName() == null) {
+            System.out.println("first name is empty!");
+            return false;
+        }
+        if (getLastName() == null) {
+            System.out.println("last name is empty!");
+            return false;
+        }
+        if (getPostalCode() == null) {
+            System.out.println("zip/postal code is empty");
+            return false;
+        }
+        return result;
     }
 }

@@ -1,13 +1,15 @@
 package org.pom;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SLCheckoutStep2Page extends Page {
+public class SLCheckoutStep2Page extends SitePage {
     private WebDriver driver;
+    private final By cancelButton = new By.ById("cancel");
+    private final By finishButton = new By.ById("finish");
 
     public SLCheckoutStep2Page(WebDriver driver) {
-        super(new ChromeDriver());
+        super(driver);
         this.driver = driver;
     }
 
@@ -19,7 +21,13 @@ public class SLCheckoutStep2Page extends Page {
         this.driver = driver;
     }
 
+    public Page goToInventoryPage() {
+        driver.findElement(cancelButton).click();
+        return new SLInventoryPage(driver);
+    }
+
     public Page goToConfirmationPage() {
-        return new SLCheckoutStep2Page(new ChromeDriver());
+        driver.findElement(finishButton).click();
+        return new SLCheckoutStep2Page(driver);
     }
 }
