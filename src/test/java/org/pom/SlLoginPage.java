@@ -3,7 +3,7 @@ package org.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.pom.inventoryPage.SLInventoryPage;
 
 import java.util.List;
 
@@ -35,16 +35,17 @@ public class SlLoginPage extends Page{
 
         return new SLInventoryPage(driver);
     }
-    public void StandardUserLogin(){
-        Login(givenUsernameList.get(0).toString(), givenPassword);
+
+    public SLInventoryPage StandardUserLogin(){
+        return Login(givenUsernameList.get(0).toString(), givenPassword);
     }
-    public void LockedOutUserLogin(){
-        Login(givenUsernameList.get(1).toString(), givenPassword);
+    public SLInventoryPage LockedOutUserLogin(){
+        return Login(givenUsernameList.get(1).toString(), givenPassword);
     }
-    public void ProblemUserLogin(){
-        Login(givenUsernameList.get(2).toString(), givenPassword);
+    public SLInventoryPage ProblemUserLogin(){
+        return Login(givenUsernameList.get(2).toString(), givenPassword);
     }
-    public void PerformanceGlitchUserLogin(){
-        Login(givenUsernameList.get(3).toString(), givenPassword);
+    public SLInventoryPage PerformanceGlitchUserLogin(){
+        return Login(givenUsernameList.get(3).toString(), givenPassword);
     }
 }

@@ -2,6 +2,8 @@ package org.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.pom.inventoryPage.SLInventoryPage;
 
 public class SLCartPage extends SitePage{
 
@@ -39,6 +41,14 @@ public class SLCartPage extends SitePage{
     public SLCartPage removeSpecificItem(int index) {
         driver.findElements(removeButton).get(index).click();
         return new SLCartPage(driver);
+    }
+
+    public WebElement getItemInCart(int index) {
+        return driver.findElements(By.className("cart_item")).get(index);
+    }
+
+    public String getItemNameInCart(int index) {
+        return driver.findElements(By.className("cart_item")).get(index).findElement(By.className("inventory_item_name")).getText();
     }
 
 }
