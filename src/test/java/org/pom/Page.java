@@ -7,4 +7,8 @@ public abstract class Page {
     public Page(WebDriver webDriver) {
         this.driver = webDriver;
     }
+
+    public String getURL() {
+        return driver.getCurrentUrl();
+    }
 }
