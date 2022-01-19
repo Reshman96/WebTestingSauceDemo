@@ -19,10 +19,12 @@ public class SLIndividualItemPage extends SitePage {
     }
 
     public SLInventoryPage goToInventoryPage(){
+        driver.findElement(backToProductsButton).click();
         return new SLInventoryPage(driver);
     }
 
     public SLCartPage goToCartPage(){
+        driver.findElement(shoppingCart).click();
         return new SLCartPage(driver);
     }
 
