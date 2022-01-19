@@ -4,7 +4,7 @@ import org.PomUtility;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.pom.SLInventoryPage;
+import org.pom.inventoryPage.SLInventoryPage;
 import org.pom.SlLoginPage;
 
 public class LoginTest {
