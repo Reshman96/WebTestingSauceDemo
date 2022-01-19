@@ -18,6 +18,7 @@ public class SlLoginPage extends Page{
     public SlLoginPage(WebDriver driver){
         super(driver);
         this.driver = driver;
+        driver.get("https://www.saucedemo.com/");
     }
 
     private void getUsernames(){
@@ -27,7 +28,7 @@ public class SlLoginPage extends Page{
         givenPassword = driver.findElement(By.className("login_password")).getText();
         return givenPassword;
     }
-    private SLInventoryPage Login(String username, String password){
+    public SLInventoryPage Login(String username, String password){
         driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
