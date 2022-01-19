@@ -15,7 +15,7 @@ public class IndividualItemPageTests {
     private SLCartPage slCartPage;
 
     @BeforeAll
-    static void setupAll(){
+    static void setupAll() {
         PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
         PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
 
@@ -31,25 +31,24 @@ public class IndividualItemPageTests {
     }
 
     @Test
-    @DisplayName("Is item added to cart")
+    @DisplayName("Is number on cart badge correct after adding an item")
     void isItemAddedToCart() {
         int itemsBeforeAdding = slIndividualItemPage.getNumberOfCartItems();
         int itemsAfterAdding;
         slIndividualItemPage.addItemToCart();
         itemsAfterAdding = slIndividualItemPage.getNumberOfCartItems();
-        Assertions.assertEquals(itemsBeforeAdding+1, itemsAfterAdding);
+        Assertions.assertEquals(itemsBeforeAdding + 1, itemsAfterAdding);
     }
 
     @Test
-    @DisplayName("Is item removed from cart")
+    @DisplayName("Is number on cart badge correct after removing an item")
     void isItemRemovedFromCart() {
         slIndividualItemPage.addItemToCart();
         int itemsBeforeRemoving = slIndividualItemPage.getNumberOfCartItems();
         int itemsAfterRemoving;
         slIndividualItemPage.removeItemFromCart();
         itemsAfterRemoving = slIndividualItemPage.getNumberOfCartItems();
-        Assertions.assertEquals(itemsBeforeRemoving-1, itemsAfterRemoving);
-        
+        Assertions.assertEquals(itemsBeforeRemoving - 1, itemsAfterRemoving);
     }
 
     @Test
@@ -57,7 +56,7 @@ public class IndividualItemPageTests {
     void CheckBackToProductsButtonTest() {
         slIndividualItemPage.goToInventoryPage();
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", driver.getCurrentUrl());
-        
+
     }
 
     @Test
@@ -67,6 +66,14 @@ public class IndividualItemPageTests {
         Assertions.assertEquals("https://www.saucedemo.com/cart.html", driver.getCurrentUrl());
     }
 
+    @Test
+    @DisplayName("Check if added product is in cart")
+    void checkIfAddedProductIsInCart() {
+        String addedItemName = slIndividualItemPage.getProductName();
+        slIndividualItemPage.addItemToCart();
+        slIndividualItemPage.goToCartPage();
+        Assertions.assertTrue(slCartPage.getItemNameInCart(0).equals(addedItemName));
+    }
 
     @AfterEach
     void tearDown() {
