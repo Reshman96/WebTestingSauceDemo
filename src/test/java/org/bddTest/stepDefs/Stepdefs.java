@@ -83,4 +83,12 @@ public class Stepdefs {
     public void theAddToCartButtonIsChangedToRemove() {
     }
 
+    @When("I click on logout button")
+    public void iClickOnLogoutButton() {
+    }
+
+    @Then("I will be logged out")
+    public void iWillBeLoggedOut() {
+    }
+
 }
