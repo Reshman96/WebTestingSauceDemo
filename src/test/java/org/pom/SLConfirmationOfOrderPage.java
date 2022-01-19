@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 public class SLConfirmationOfOrderPage extends SitePage {
 
-    private By backToProduct = new By.ById("back-to-products");
-    private WebDriver driver;
+    private final By backToProduct = new By.ById("back-to-products");
+    private final WebDriver driver;
 
     public SLConfirmationOfOrderPage(WebDriver driver) {
         super(driver);
