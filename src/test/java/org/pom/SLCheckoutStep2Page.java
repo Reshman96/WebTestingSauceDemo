@@ -13,14 +13,6 @@ public class SLCheckoutStep2Page extends SitePage {
         this.driver = driver;
     }
 
-    public WebDriver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
-    }
-
     public Page goToInventoryPage() {
         driver.findElement(cancelButton).click();
         return new SLInventoryPage(driver);
