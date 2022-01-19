@@ -2,18 +2,17 @@ package org.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class SLCheckoutStep1Page extends SitePage {
     private String firstName;
     private String lastName;
     private String postalCode;
-    private By checkout = By.id("checkout");
-    private By cart = new By.ByClassName("shopping_cart_badge");
+    private final By continueButton = By.id("continue");
+    private final By cancelButton = new By.ById("cancel");
     private WebDriver driver;
 
     public SLCheckoutStep1Page(WebDriver driver) {
-        super(new ChromeDriver());
+        super(driver);
         this.driver = driver;
     }
 
@@ -50,12 +49,12 @@ public class SLCheckoutStep1Page extends SitePage {
     }
 
     public Page goToCheckoutStep2Page() {
-        driver.findElement(checkout).click();
+        driver.findElement(continueButton).click();
         return new SLCheckoutStep2Page(driver);
     }
 
     public SLCartPage goToCart() {
-        driver.findElement(cart).click();
+        driver.findElement(cancelButton).click();
         return new SLCartPage(driver);
     }
 
