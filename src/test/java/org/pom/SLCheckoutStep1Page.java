@@ -60,7 +60,19 @@ public class SLCheckoutStep1Page extends SitePage {
     }
 
     public boolean isAnyFieldEmpty() {
-        // temporarily set to return true
-        return true;
+        boolean result = true;
+        if (getFirstName() == null) {
+            System.out.println("first name is empty!");
+            return false;
+        }
+        if (getLastName() == null) {
+            System.out.println("last name is empty!");
+            return false;
+        }
+        if (getPostalCode() == null) {
+            System.out.println("zip/postal code is empty");
+            return false;
+        }
+        return result;
     }
 }
