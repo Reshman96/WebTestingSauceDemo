@@ -4,9 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class SLCheckoutStep1Page extends SitePage {
-    private String firstName;
-    private String lastName;
-    private String postalCode;
+    // Temporary default values for firstName, lastName and postalCode
+    private String firstName = "James";
+    private String lastName = "Bond";
+    private String postalCode = "007";
     private final By continueButton = By.id("continue");
     private final By cancelButton = new By.ById("cancel");
     private WebDriver driver;
