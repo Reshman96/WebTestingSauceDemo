@@ -15,13 +15,8 @@ public class SLSauceLabsBackpackPage extends Page {
 
     public SLSauceLabsBackpackPage(WebDriver driver) {
         this.driver = driver;
-        driver.getCurrentUrl();
     }
 
-    public boolean checkBackToProductsButton() {
-        driver.findElement(backToProductsButton).click();
-        return driver.getCurrentUrl().equals("https://www.saucedemo.com/inventory.html");
-    }
 
     String getURL() {
         return driver.getCurrentUrl();
