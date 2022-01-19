@@ -36,4 +36,9 @@ public class SLCartPage extends SitePage{
         return new SLCartPage(driver);
     }
 
+    public SLCartPage removeSpecificItem(int index) {
+        driver.findElements(removeButton).get(index).click();
+        return new SLCartPage(driver);
+    }
+
 }
