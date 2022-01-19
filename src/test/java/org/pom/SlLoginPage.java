@@ -54,4 +54,8 @@ public class SlLoginPage extends Page{
         return Login(getGivenUsernameList()[4], getPassword());
     }
 
+    public String getLoginErrorMessage(){
+        return driver.findElement(By.tagName("h3")).getText();
+    }
+
 }
