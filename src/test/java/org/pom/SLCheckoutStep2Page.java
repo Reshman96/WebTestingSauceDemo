@@ -13,13 +13,13 @@ public class SLCheckoutStep2Page extends SitePage {
         this.driver = driver;
     }
 
-    public Page goToInventoryPage() {
+    public SLInventoryPage goToInventoryPage() {
         driver.findElement(cancelButton).click();
         return new SLInventoryPage(driver);
     }
 
-    public Page goToConfirmationPage() {
+    public SLConfirmationOfOrderPage goToConfirmationPage() {
         driver.findElement(finishButton).click();
-        return new SLCheckoutStep2Page(driver);
+        return new SLConfirmationOfOrderPage(driver);
     }
 }
