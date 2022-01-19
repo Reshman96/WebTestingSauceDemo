@@ -2,6 +2,7 @@ package org.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class SLInventoryPage extends SitePage{
     private WebDriver driver;
@@ -24,5 +25,9 @@ public class SLInventoryPage extends SitePage{
     public SLCartPage goToCart() {
         driver.findElement(By.id("shopping_cart_container")).click();
         return new SLCartPage(driver);
+    }
+
+    public WebElement getInventoryElement(int itemNo) {
+        return driver.findElements(By.className("inventory_item")).get(itemNo);
     }
 }
