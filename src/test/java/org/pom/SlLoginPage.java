@@ -31,6 +31,7 @@ public class SlLoginPage extends Page{
         driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
+
         return new SLInventoryPage(driver);
     }
 
