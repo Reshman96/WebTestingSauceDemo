@@ -12,16 +12,15 @@ import java.rmi.UnexpectedException;
 
 public class StepDefsUtil {
     public static WebDriver driver;
+
     @Before(order = 1)
     public void setup() {
         System.out.println("Setup called!");
         DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
         System.out.println("Setup called!");
-        try {
-            driver = DriversFactory.getWebDriver();
-        } catch (UnexpectedException e) {
-            e.printStackTrace();
-        }
+
+        driver = DriversFactory.getWebDriver();
+
     }
 
     @After
