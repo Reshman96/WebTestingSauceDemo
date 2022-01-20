@@ -17,7 +17,7 @@ public class LoginStepdefs {
 
     @Given("I am on the login page")
     public void iAmOnTheLoginPage() {
-        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
+        StepDefsUtil.setup();
         driver = StepDefsUtil.driver;
         loginPage = new SlLoginPage(driver);
     }
