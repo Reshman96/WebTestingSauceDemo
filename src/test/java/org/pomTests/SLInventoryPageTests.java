@@ -1,5 +1,6 @@
 package org.pomTests;
 
+import org.DriversFactory;
 import org.PomUtility;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.NoSuchElementException;
@@ -15,8 +16,7 @@ public class SLInventoryPageTests {
 
     @BeforeAll
     static void setupAll() {
-        PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
-        PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
+        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
     }
 
     @BeforeEach

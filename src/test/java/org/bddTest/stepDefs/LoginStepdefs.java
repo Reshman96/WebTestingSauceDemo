@@ -3,6 +3,7 @@ package org.bddTest.stepDefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.DriversFactory;
 import org.PomUtility;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -17,8 +18,7 @@ public class LoginStepdefs {
 
     @Given("I am on the login page")
     public void iAmOnTheLoginPage() {
-        PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
-        PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
+        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
         driver = StepDefsUtil.driver;
         loginPage = new SlLoginPage(driver);
     }

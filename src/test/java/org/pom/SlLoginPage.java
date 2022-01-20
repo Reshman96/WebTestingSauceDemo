@@ -2,11 +2,8 @@ package org.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.pom.inventoryPage.SLInventoryPage;
 
-import java.util.List;
 
 public class SlLoginPage extends Page{
     WebDriver driver;
