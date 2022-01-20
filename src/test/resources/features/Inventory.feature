@@ -1,7 +1,7 @@
 Feature: As a shopper I want to be able to add and remove from the cart
   Background: Starting on the inventory page and logged in
     Given I am logged in
-    And I am on the Inventory page
+    And Im on the inventory page
 
   Scenario: Adding an item to the cart
     When I click on add to cart for an item

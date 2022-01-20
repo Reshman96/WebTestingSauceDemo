@@ -13,11 +13,14 @@ Feature: As a shopper, I want to be able to go to the basket page from any other
     Then I should be able to view whats in my basket
 
   Scenario: Accessing basket from checkout step 1 page
+    And I am on the cart page
     And Im on the checkout step 1 page
     When I click the basket
     Then I should be able to view whats in my basket
 
   Scenario: Accessing basket from checkout step 2 page
+    And I am on the cart page
+    And Im on the checkout step 1 page
     And Im on the checkout step 2 page
     When I click the basket
     Then I should be able to view whats in my basket
