@@ -58,5 +58,9 @@ public abstract class SitePage extends Page{
         openBurgerMenu();
         driver.findElement(By.className("bm-item-list")).findElement(By.id("reset_sidebar_link")).click();
     }
+    public SLCartPage goToCart() {
+        driver.findElement(By.id("shopping_cart_container")).click();
+        return new SLCartPage(driver);
+    }
 
 }
