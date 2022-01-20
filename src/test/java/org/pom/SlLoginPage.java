@@ -3,6 +3,7 @@ package org.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.pom.inventoryPage.SLInventoryPage;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class SlLoginPage extends Page{
     By username;
     By password;
     By loginButton;
-    List<WebElement> givenUsernameList;
+    String[] givenUsernameList;
     String givenPassword;
 
     public SlLoginPage(WebDriver driver){
@@ -21,31 +22,40 @@ public class SlLoginPage extends Page{
         driver.get("https://www.saucedemo.com/");
     }
 
-    private void getUsernames(){
-        givenUsernameList = driver.findElements(By.id("login_credentials"));
+    private String[] getGivenUsernameList() {
+        String listofUsernames = driver.findElement(By.id("login_credentials")).getText();
+        givenUsernameList = listofUsernames.split("\n");
+        return givenUsernameList;
     }
     private String getPassword(){
         givenPassword = driver.findElement(By.className("login_password")).getText();
+        givenPassword = givenPassword.split("\n")[1];
         return givenPassword;
     }
     public SLInventoryPage Login(String username, String password){
         driver.findElement(By.id("user-name")).sendKeys(username);
         driver.findElement(By.id("password")).sendKeys(password);
         driver.findElement(By.id("login-button")).click();
-
         return new SLInventoryPage(driver);
     }
-
     public SLInventoryPage StandardUserLogin(){
-        return Login(givenUsernameList.get(0).toString(), givenPassword);
+        return Login(getGivenUsernameList()[1], getPassword());
     }
+
     public SLInventoryPage LockedOutUserLogin(){
-        return Login(givenUsernameList.get(1).toString(), givenPassword);
+        return Login(getGivenUsernameList()[2], getPassword());
     }
+
     public SLInventoryPage ProblemUserLogin(){
-        return Login(givenUsernameList.get(2).toString(), givenPassword);
+        return Login(getGivenUsernameList()[3], getPassword());
     }
+
     public SLInventoryPage PerformanceGlitchUserLogin(){
-        return Login(givenUsernameList.get(3).toString(), givenPassword);
+        return Login(getGivenUsernameList()[4], getPassword());
     }
+
+    public String getLoginErrorMessage(){
+        return driver.findElement(By.tagName("h3")).getText();
+    }
+
 }

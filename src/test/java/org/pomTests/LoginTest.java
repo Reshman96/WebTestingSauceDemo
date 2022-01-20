@@ -30,6 +30,27 @@ public class LoginTest {
         SLInventoryPage inventoryPage = loginPage.Login("standard_user", "secret_sauce");
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getURL());
     }
+    @Test
+    void checkStandardUserLogin() {
+        SLInventoryPage inventoryPage = loginPage.StandardUserLogin();
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getURL());
+    }
+    @Test
+    void checkLockedOutUserLogin() {
+        SLInventoryPage inventoryPage = loginPage.LockedOutUserLogin();
+        Assertions.assertEquals("Epic sadface: Sorry, this user has been locked out.", loginPage.getLoginErrorMessage());
+        System.out.println(loginPage.getLoginErrorMessage());
+    }
+    @Test
+    void checkProblemUserLogin() {
+        SLInventoryPage inventoryPage = loginPage.ProblemUserLogin();
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getURL());
+    }
+    @Test
+    void checkPerformanceGlitchUserLogin() {
+        SLInventoryPage inventoryPage = loginPage.PerformanceGlitchUserLogin();
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", inventoryPage.getURL());
+    }
 
     @AfterAll
     static void teardownAll() {
