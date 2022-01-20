@@ -13,3 +13,12 @@ Feature: As a shopper I want to be able to log in
   Scenario: Logging in without entering details
     When I leave the username or password box blank
     Then I will not be logged in
+  Scenario: Logging in with a problem account
+    When I enter valid username and password but the account is a problem user
+    Then I will be logged in
+  Scenario: A problem user logs in and the images are wrong
+    When I enter valid username and password but the account is a problem user
+    Then the product images will be wrong
+  Scenario: Logging in with a glitched account
+    When I enter valid username and password but the account is a performance glitch user
+    Then I will be logged in
