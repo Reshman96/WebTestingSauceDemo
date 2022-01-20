@@ -10,7 +10,7 @@ public class SLCheckoutStep1Page extends SitePage {
     private String postalCode;
     private final By continueButton = new By.ById("continue");
     private final By cancelButton = new By.ById("cancel");
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public SLCheckoutStep1Page(WebDriver driver) {
         super(driver);
@@ -21,7 +21,7 @@ public class SLCheckoutStep1Page extends SitePage {
         return firstName;
     }
 
-    private void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         driver.findElement(By.id("first-name")).sendKeys(firstName);
         this.firstName = firstName;
     }
@@ -30,7 +30,7 @@ public class SLCheckoutStep1Page extends SitePage {
         return lastName;
     }
 
-    private void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         driver.findElement(By.id("last-name")).sendKeys(lastName);
         this.lastName = lastName;
     }
@@ -39,7 +39,7 @@ public class SLCheckoutStep1Page extends SitePage {
         return postalCode;
     }
 
-    private void setPostalCode(String postalCode) {
+    public void setPostalCode(String postalCode) {
         driver.findElement(By.id("postal-code")).sendKeys(postalCode);
         this.postalCode = postalCode;
     }
@@ -50,6 +50,10 @@ public class SLCheckoutStep1Page extends SitePage {
         setPostalCode("007");
         driver.findElement(continueButton).click();
         return new SLCheckoutStep2Page(driver);
+    }
+
+    public void clickContinueButton() {
+        driver.findElement(continueButton).click();
     }
 
     public SLCartPage goToCart() {

@@ -6,7 +6,6 @@ import io.cucumber.java.en.When;
 import org.PomUtility;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.pom.SlLoginPage;
 import org.pom.inventoryPage.SLInventoryPage;
 
@@ -20,7 +19,7 @@ public class LoginStepdefs {
     public void iAmOnTheLoginPage() {
         PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
         PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
-        driver = new ChromeDriver();
+        driver = StepDefsUtil.driver;
         loginPage = new SlLoginPage(driver);
     }
 
