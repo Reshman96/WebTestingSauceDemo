@@ -11,7 +11,7 @@ public class StepDefsUtil {
     @Before
     public void setup() {
         DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
-        driver = new ChromeDriver();
+        driver = DriversFactory.getWebDriver();
     }
 
     @After

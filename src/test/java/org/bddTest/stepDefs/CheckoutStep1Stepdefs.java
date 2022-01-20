@@ -22,7 +22,7 @@ public class CheckoutStep1Stepdefs {
     @Before
     public void setup() {
         DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
-        driver = new ChromeDriver();
+        driver = StepDefsUtil.driver;
         loginPage = new SlLoginPage(driver);
     }
 

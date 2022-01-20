@@ -19,7 +19,7 @@ public class EveryPageStepdefs {
     @Before
     public void setup() {
         DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
-        driver = new ChromeDriver();
+        driver = StepDefsUtil.driver;
     }
     @Given("Im on the inventory page")
     public void imOnTheInventoryPage() {

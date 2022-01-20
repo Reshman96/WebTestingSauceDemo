@@ -17,7 +17,6 @@ public class IndividualItemPageTests {
     @BeforeAll
     static void setupAll() {
         DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
-
     }
 
     @BeforeEach

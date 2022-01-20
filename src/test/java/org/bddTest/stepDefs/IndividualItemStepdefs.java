@@ -25,7 +25,7 @@ public class IndividualItemStepdefs {
     @Before
     public void setup(){
         DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
-        driver = new ChromeDriver();
+        driver = StepDefsUtil.driver;
         loginPage = new SlLoginPage(driver);
         loginPage.Login("standard_user", "secret_sauce");
         slInventoryPage = new SLInventoryPage(driver);
