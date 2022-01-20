@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.DriversFactory;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.pom.*;
@@ -24,7 +25,7 @@ public class CoreFunctionalityStepdefs {
 
     @Before
     public void setup() {
-//        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
+        StepDefsUtil.setup();
         driver = StepDefsUtil.driver;
         loginPage = new SlLoginPage(driver);
     }

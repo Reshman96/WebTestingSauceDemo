@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class StepDefsUtil {
     public static WebDriver driver;
     @Before
-    public void setup() {
+    public static void setup() {
         DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
         driver = DriversFactory.getWebDriver();
     }
