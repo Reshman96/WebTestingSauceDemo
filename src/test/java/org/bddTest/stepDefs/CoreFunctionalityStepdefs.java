@@ -109,95 +109,86 @@ public class CoreFunctionalityStepdefs {
 
     @Then("My item is in the cart")
     public void myItemIsInTheCart() {
-        String productName = individualItemPage.getProductName();
-        Assertions.assertEquals(productName, cartPage.getItemNameInCart(0));
+        String productName = StepdefData.getIndividualItemPage().getProductName();
+        Assertions.assertEquals(productName, StepdefData.getCartPage().getItemNameInCart(0));
     }
 
     @And("I click on remove button")
     public void iClickOnRemoveButton() {
-        individualItemPage.removeItemFromCart();
+        StepdefData.getIndividualItemPage().removeItemFromCart();
     }
 
     @And("I go to cart page")
     public void iGoToCartPage() {
-        sitePage = individualItemPage.goToCartPage();
+        StepdefData.getIndividualItemPage().goToCartPage();
     }
 
     @Then("Cart icon shows zero items")
     public void cartIconShowsZeroItems() {
-        Assertions.assertTrue(individualItemPage.getNumberOfCartItems()==0);
+        Assertions.assertEquals(0, StepdefData.getIndividualItemPage().getNumberOfCartItems());
     }
 
     @Then("The cart is empty")
     public void theCartIsEmpty() {
-        Assertions.assertThrows(IndexOutOfBoundsException.class,() -> cartPage.getItemNameInCart(0));
+        Assertions.assertThrows(IndexOutOfBoundsException.class,() -> StepdefData.getCartPage().getItemNameInCart(0));
     }
 
     //Inventory
-
-    @And("I am on the Inventory page")
-    public void iAmOnTheInventoryPage() {
-        driver = StepDefsUtil.driver;
-        //should be able to assign inventory page as we should be logged in
-        inventoryPage = new SLInventoryPage(driver);
-        sitePage = new SitePage(driver) {}; //No way this is good practice.
-    }
-
     @When("I click on add to cart for an item")
     public void iClickOnAddToCartForAnItem() {
-        inventoryPage.addToCart(0);
+        StepdefData.getInventoryPage().addToCart(0);
     }
 
     @Then("the item is added to the basket")
     public void theItemIsAddedToTheBasket() {
-        Assertions.assertEquals("Sauce Labs Backpack", sitePage.goToCart().getItemNameInCart(0));
+        Assertions.assertEquals("Sauce Labs Backpack", StepdefData.getCartPage().getItemNameInCart(0));
     }
 
     @Then("the add to cart button is changed to remove")
     public void theAddToCartButtonIsChangedToRemove() {
-        Assertions.assertEquals("REMOVE", inventoryPage.getInventoryElement(0).getText().substring(
-                inventoryPage.getInventoryElement(0).getText().length()-6));
+        Assertions.assertEquals("REMOVE", StepdefData.getInventoryPage().getInventoryElement(0).getText().substring(
+                StepdefData.getInventoryPage().getInventoryElement(0).getText().length()-6));
     }
 
     @When("I click to return to the inventory page")
     public void iClickToReturnToTheInventoryPage() {
-        sitePage = sitePage.returnToShop();
-    }
+        StepdefData.getInventoryPage().returnToShop();
+    } //Default use of InventoryPage
 
-    @Then("I will be on the inventory page")
-    public void iWillBeOnTheInventoryPage() {
-        Assertions.assertInstanceOf(SLInventoryPage.class, sitePage);
-    }
+    //@Then("I will be on the inventory page")
+    //public void iWillBeOnTheInventoryPage() {
+    //    Assertions.assertInstanceOf(SLInventoryPage.class, sitePage);
+    //}
 
     //Purchase
     @And("I am on the cart page")
     public void iAmOnTheCartPage() {
-        sitePage = new SLInventoryPage(driver).goToCart();
+        StepdefData.getInventoryPage().goToCart();
     }
 
     @When("I click on checkout")
     public void iClickOnCheckout() {
-        sitePage = cartPage.goToCheckoutStep1Page();
+        StepdefData.getCartPage().goToCheckoutStep1Page();
     }
 
     @Then("I am prompted to put in details")
     public void iAmPromptedToPutInDetails() {
-        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-one.html", sitePage.getURL());
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-one.html", StepdefData.getInventoryPage().getURL()); //Default use of InventoryPage
     }
 
     @And("I am going through with a purchase")
     public void iAmGoingThroughWithAPurchase() {
-        sitePage = cartPage.goToCheckoutStep1Page();
+        StepdefData.getCartPage().goToCheckoutStep1Page();
     }
 
     @When("I confirm my purchase")
     public void iConfirmMyPurchase() {
-        sitePage = checkoutStep1Page.goToCheckoutStep2Page();
+        StepdefData.getCheckoutStep1Page().goToCheckoutStep2Page();
     }
 
     @Then("The website should thank me for my order, and say it is on it’s way.")
     public void theWebsiteShouldThankMeForMyOrderAndSayItIsOnItSWay() {
-        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", sitePage.getURL());
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getInventoryPage().getURL()); //Default use of InventoryPage
     }
 
     //@After
