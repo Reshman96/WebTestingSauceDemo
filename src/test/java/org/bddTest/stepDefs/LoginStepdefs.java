@@ -67,4 +67,9 @@ public class LoginStepdefs {
     public void theProductImagesWillBeWrong() {
         Assertions.assertEquals("https://www.saucedemo.com/static/media/sl-404.168b1cce.jpg", inventoryPage.getInventoryElementImageLink(1));
     }
+
+    @Then("the product images will be correct")
+    public void theProductImagesWillBeCorrect() {
+        Assertions.assertEquals("https://www.saucedemo.com/static/media/sauce-backpack-1200x1500.34e7aa42.jpg", inventoryPage.getInventoryElementImageLink(0));
+    }
 }
