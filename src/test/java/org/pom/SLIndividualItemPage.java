@@ -9,14 +9,14 @@ import java.util.List;
 
 public class SLIndividualItemPage extends SitePage {
     private WebDriver driver;
-    private By addToCartButton = new By.ByCssSelector(".btn.btn_primary.btn_small.btn_inventory");
-    private By removeButton = new By.ByCssSelector(".btn.btn_secondary.btn_small.btn_inventory");
+    private By addItemToCart = new By.ByCssSelector(".btn.btn_primary.btn_small.btn_inventory");
+    private By removeItemFromCart = new By.ByCssSelector(".btn.btn_secondary.btn_small.btn_inventory");
     private By shoppingCartBadge = new By.ByClassName("shopping_cart_badge");
-    private By shoppingCartLink = new By.ByClassName("shopping_cart_link");
     private By productName = new By.ByCssSelector(".inventory_details_name.large_size");
     private By productDescription = new By.ByCssSelector(".inventory_details_desc.large_size");
     private By productPrice = new By.ByClassName("inventory_details_price");
-    private By backToProductsButton = new By.ById("back-to-products");
+    private By goToCart = new By.ByClassName("shopping_cart_link");
+    private By goToInventory = new By.ById("back-to-products");
 
     public SLIndividualItemPage(WebDriver driver) {
         super(driver);
@@ -25,21 +25,21 @@ public class SLIndividualItemPage extends SitePage {
     }
 
     public SLInventoryPage goToInventoryPage(){
-        driver.findElement(backToProductsButton).click();
+        driver.findElement(goToInventory).click();
         return new SLInventoryPage(driver);
     }
 
     public SLCartPage goToCartPage(){
-        driver.findElement(shoppingCartLink).click();
+        driver.findElement(goToCart).click();
         return new SLCartPage(driver);
     }
 
     public void removeItemFromCart(){
-        driver.findElement(removeButton).click();
+        driver.findElement(removeItemFromCart).click();
     }
 
     public void addItemToCart(){
-        driver.findElement(addToCartButton).click();
+        driver.findElement(addItemToCart).click();
     }
 
     public int getNumberOfCartItems(){
