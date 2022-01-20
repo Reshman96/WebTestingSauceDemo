@@ -170,7 +170,6 @@ public class CoreFunctionalityStepdefs {
     //Purchase
     @And("I am on the cart page")
     public void iAmOnTheCartPage() {
-        sitePage = LogOutStepdefs.inventoryPage;
         sitePage = inventoryPage.goToCart();
     }
 

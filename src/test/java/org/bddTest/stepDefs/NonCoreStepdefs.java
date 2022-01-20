@@ -21,11 +21,6 @@ public class NonCoreStepdefs {
     private SLIndividualItemPage slIndividualItemPage;
     private String productName;
 
-    @And("I click on continue")
-    public void iClickOnContinue() {
-        checkoutStep1Page.clickContinueButton();
-    }
-
     @Then("The website should give me an error saying {string}")
     public void theWebsiteShouldGiveMeAnErrorSaying(String string) {
         String errorMessage = driver.findElement(By.cssSelector("*[data-test=\"error\"]")).getText().toLowerCase();
@@ -66,42 +61,6 @@ public class NonCoreStepdefs {
     @And("The postal code field is filled")
     public void thePostalCodeFieldIsFilled() {
         checkoutStep1Page.setPostalCode("0123");
-    }
-
-    @When("I click on add to cart button")
-    public void iClickOnAddToCartButton() {
-        slIndividualItemPage.addItemToCart();
-    }
-
-    @Then("Cart icon shows one item")
-    public void cartIconShowsOneItem() {
-        Assertions.assertEquals(1, slIndividualItemPage.getNumberOfCartItems());
-    }
-
-    @Then("My item is in the cart")
-    public void myItemIsInTheCart() {
-        Assertions.assertEquals(productName, cartPage.getItemNameInCart(0));
-    }
-
-    @And("I click on remove button")
-    public void iClickOnRemoveButton() {
-        slIndividualItemPage.removeItemFromCart();
-    }
-
-    @Then("Cart icon shows zero items")
-    public void cartIconShowsZeroItems() {
-        Assertions.assertEquals(0, slIndividualItemPage.getNumberOfCartItems());
-    }
-
-    @Then("The cart is empty")
-    public void theCartIsEmpty() {
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> cartPage.getItemNameInCart(0));
-    }
-
-    @Then("the add to cart button is changed to remove")
-    public void theAddToCartButtonIsChangedToRemove() {
-        Assertions.assertEquals("REMOVE", inventoryPage.getInventoryElement(0).getText().substring(
-                inventoryPage.getInventoryElement(0).getText().length() - 6));
     }
 
     @When("I click on logout button")
