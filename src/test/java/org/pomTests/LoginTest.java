@@ -38,7 +38,8 @@ public class LoginTest {
     @Test
     void checkLockedOutUserLogin() {
         SLInventoryPage inventoryPage = loginPage.LockedOutUserLogin();
-        Assertions.assertEquals("https://www.saucedemo.com/", inventoryPage.getURL());
+        Assertions.assertEquals("Epic sadface: Sorry, this user has been locked out.", loginPage.getLoginErrorMessage());
+        System.out.println(loginPage.getLoginErrorMessage());
     }
     @Test
     void checkProblemUserLogin() {
