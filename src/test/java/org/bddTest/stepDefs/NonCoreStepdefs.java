@@ -15,17 +15,10 @@ import org.pom.inventoryPage.SLInventoryPage;
 
 public class NonCoreStepdefs {
     private WebDriver driver;
-    private SlLoginPage loginPage;
-    private SLInventoryPage inventoryPage;
-    private SLCheckoutStep1Page checkoutStep1Page;
-    private SLCartPage cartPage;
-    private SLIndividualItemPage slIndividualItemPage;
-    private String productName;
 
     @Before(order = 3)
     public void setup() {
         driver = StepDefsUtil.driver;
-        loginPage = new SlLoginPage(driver);
     }
 
     @Then("The website should give me an error saying {string}")
@@ -42,41 +35,102 @@ public class NonCoreStepdefs {
 
     @When("The first name field is empty")
     public void theFirstNameFieldIsEmpty() {
-        new SLCheckoutStep1Page(driver).setFirstName("");
+        StepdefData.getCheckoutStep1Page().setFirstName("");
     }
 
     @When("The last name field is empty")
     public void theLastNameFieldIsEmpty() {
-        checkoutStep1Page.setLastName("");
+        StepdefData.getCheckoutStep1Page().setLastName("");
     }
 
     @When("The postal code field is empty")
     public void thePostalCodeFieldIsEmpty() {
-        checkoutStep1Page.setPostalCode("");
+        StepdefData.getCheckoutStep1Page().setPostalCode("");
     }
 
     @And("The first name field is filled")
     public void theFirstNameFieldIsFilled() {
-        checkoutStep1Page.setFirstName("Luciano");
+        StepdefData.getCheckoutStep1Page().setFirstName("Luciano");
     }
 
     @And("The last name field is filled")
     public void theLastNameFieldIsFilled() {
-        checkoutStep1Page.setLastName("Big Tuna");
+        StepdefData.getCheckoutStep1Page().setLastName("Big Tuna");
     }
 
     @And("The postal code field is filled")
     public void thePostalCodeFieldIsFilled() {
-        checkoutStep1Page.setPostalCode("0123");
+        StepdefData.getCheckoutStep1Page().setPostalCode("0123");
     }
 
     @When("I click on logout button")
     public void iClickOnLogoutButton() {
-        loginPage = inventoryPage.logout();
+        StepdefData.getInventoryPage().logout();
     }
 
     @Then("I will be logged out")
     public void iWillBeLoggedOut() {
-        Assertions.assertEquals("https://www.saucedemo.com/", loginPage.getURL());
+        Assertions.assertEquals("https://www.saucedemo.com/", StepdefData.getLoginPage().getURL());
     }
+
+    @When("I click on the twitter icon")
+    public void iClickOnTheTwitterIcon() {
+        //needs SitePage implementation
+    }
+
+    @Then("I go to the company's twitter page")
+    public void iGoToTheCompanySTwitterPage() {
+        //needs SitePage implementation
+    }
+
+    @When("I click on the facebook icon")
+    public void iClickOnTheFacebookIcon() {
+        //needs SitePage implementation
+    }
+
+    @Then("I go to the company's facebook page")
+    public void iGoToTheCompanySFacebookPage() {
+        //needs SitePage implementation
+    }
+
+    @When("I click on the linkedin icon")
+    public void iClickOnTheLinkedinIcon() {
+        //needs SitePage implementation
+    }
+
+    @Then("I go to the company's linkedin page")
+    public void iGoToTheCompanySLinkedinPage() {
+        //needs SitePage implementation
+    }
+
+    @When("I click on the about option on the Hamburger menu")
+    public void iClickOnTheAboutOptionOnTheHamburgerMenu() {
+        StepdefData.getInventoryPage().goToCompanyPage();
+    }
+
+    @Then("I go to the company's about page")
+    public void iGoToTheCompanySAboutPage() {
+        Assertions.assertEquals("https://saucelabs.com/", StepdefData.getInventoryPage().getURL());
+    }
+
+    @When("I click on the reset app state option on the Hamburger menu")
+    public void iClickOnTheResetAppStateOptionOnTheHamburgerMenu() {
+        StepdefData.getInventoryPage().resetAppState();
+    }
+
+    @Then("I remove all the items from the basket")
+    public void iRemoveAllTheItemsFromTheBasket() {
+        //needs SitePage implementation
+    }
+
+    @Then("I should be able to view whats in my basket")
+    public void iShouldBeAbleToViewWhatsInMyBasket() {
+        //needs SitePage implementation
+    }
+
+    @Then("I should go to checkoutStep2 page")
+    public void iShouldGoToCheckoutStep2Page() {
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getCheckoutStep2Page());
+    }
+
 }
