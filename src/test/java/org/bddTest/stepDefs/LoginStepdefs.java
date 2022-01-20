@@ -52,4 +52,23 @@ public class LoginStepdefs {
         inventoryPage = loginPage.Login("", "");
     }
 
+    @When("I enter valid username and password but the account is a problem user")
+    public void iEnterValidUsernameAndPasswordButTheAccountIsAProblemUser() {
+        inventoryPage = loginPage.Login("problem_user", "secret_sauce");
+    }
+
+    @When("I enter valid username and password but the account is a performance glitch user")
+    public void iEnterValidUsernameAndPasswordButTheAccountIsAPerformanceGlitchUser() {
+        inventoryPage = loginPage.Login("performance_glitch_user", "secret_sauce");
+    }
+
+    @Then("the product images will be wrong")
+    public void theProductImagesWillBeWrong() {
+        Assertions.assertEquals("https://www.saucedemo.com/static/media/sl-404.168b1cce.jpg", inventoryPage.getInventoryElementImageLink(1));
+    }
+
+    @Then("the product images will be correct")
+    public void theProductImagesWillBeCorrect() {
+        Assertions.assertEquals("https://www.saucedemo.com/static/media/sauce-backpack-1200x1500.34e7aa42.jpg", inventoryPage.getInventoryElementImageLink(0));
+    }
 }
