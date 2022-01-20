@@ -130,7 +130,7 @@ public class NonCoreStepdefs {
 
     @Then("I should go to checkoutStep2 page")
     public void iShouldGoToCheckoutStep2Page() {
-        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getCheckoutStep2Page());
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getCheckoutStep2Page().getURL());
     }
 
 }

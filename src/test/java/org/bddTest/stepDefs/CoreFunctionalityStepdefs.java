@@ -8,6 +8,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.DriversFactory;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.pom.*;
 import org.pom.inventoryPage.SLInventoryPage;
@@ -66,7 +68,11 @@ public class CoreFunctionalityStepdefs {
     //EveryPage
     @Given("Im on the inventory page")
     public void imOnTheInventoryPage() {
-        StepdefData.getLoginPage().StandardUserLogin();
+        try {
+            StepdefData.getLoginPage().StandardUserLogin();
+        } catch(NoSuchElementException e) {
+            Assumptions.assumeTrue(StepdefData.getInventoryPage().getURL().equals("https://www.saucedemo.com/inventory.html")); //Default use of InventoryPage
+        }
     }
 
     //@Given("Im on the product page")
@@ -76,7 +82,7 @@ public class CoreFunctionalityStepdefs {
 
     @Given("Im on the checkout step 1 page")
     public void imOnTheCheckoutStep1Page() {
-        StepdefData.getLoginPage().StandardUserLogin().goToCart().goToCheckoutStep1Page();
+        StepdefData.getCartPage().goToCheckoutStep1Page();
     }
 
     @Given("Im on the checkout step 2 page")
@@ -109,8 +115,10 @@ public class CoreFunctionalityStepdefs {
 
     @Then("My item is in the cart")
     public void myItemIsInTheCart() {
-        String productName = StepdefData.getIndividualItemPage().getProductName();
-        Assertions.assertEquals(productName, StepdefData.getCartPage().getItemNameInCart(0));
+        StepdefData.getInventoryPage().goToCart(); //Default use of InventoryPage
+        String productName = StepdefData.getCartPage().getItemNameInCart(0);
+        StepdefData.getCartPage().goToProductPage();
+        Assertions.assertEquals(StepdefData.getInventoryPage().getInventoryElementName(0), productName);
     }
 
     @And("I click on remove button")
@@ -141,6 +149,7 @@ public class CoreFunctionalityStepdefs {
 
     @Then("the item is added to the basket")
     public void theItemIsAddedToTheBasket() {
+        StepdefData.getInventoryPage().goToCart();
         Assertions.assertEquals("Sauce Labs Backpack", StepdefData.getCartPage().getItemNameInCart(0));
     }
 
@@ -191,8 +200,8 @@ public class CoreFunctionalityStepdefs {
         Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getInventoryPage().getURL()); //Default use of InventoryPage
     }
 
-    //@After
-    //public void teardown() {
-    //    driver.quit();
-    //}
+    @Then("I will be on the inventory page")
+    public void iWillBeOnTheInventoryPage() {
+        Assertions.assertEquals("https://www.saucedemo.com/inventory.html", StepdefData.getInventoryPage().getURL()); //Technically Default use of InventoryPage
+    }
 }

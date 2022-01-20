@@ -9,5 +9,4 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features"},
         plugin = {"pretty", "html:target/testReport.html","json:target/jsonReport.json"}
 )
-public class TestRunner {
-}
+public class TestRunner {}
