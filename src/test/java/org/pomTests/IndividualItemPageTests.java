@@ -75,6 +75,16 @@ public class IndividualItemPageTests {
         Assertions.assertTrue(slCartPage.getItemNameInCart(0).equals(addedItemName));
     }
 
+    @Test
+    @DisplayName("Check if product is removed from cart")
+    void checkIfProductIsRemovedFromCart() {
+        slIndividualItemPage.addItemToCart();
+        slIndividualItemPage.removeItemFromCart();
+        slIndividualItemPage.goToCartPage();
+        Assertions.assertThrows(IndexOutOfBoundsException.class,() -> slCartPage.getItemNameInCart(0));
+
+    }
+
     @AfterEach
     void tearDown() {
         driver.close();
