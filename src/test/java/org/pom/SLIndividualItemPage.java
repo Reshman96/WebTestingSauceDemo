@@ -2,16 +2,12 @@ package org.pom;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.pom.inventoryPage.SLInventoryPage;
-
-import java.util.List;
 
 public class SLIndividualItemPage extends SitePage {
     private WebDriver driver;
     private By addItemToCart = new By.ByCssSelector(".btn.btn_primary.btn_small.btn_inventory");
     private By removeItemFromCart = new By.ByCssSelector(".btn.btn_secondary.btn_small.btn_inventory");
-    private By shoppingCartBadge = new By.ByClassName("shopping_cart_badge");
     private By productName = new By.ByCssSelector(".inventory_details_name.large_size");
     private By productDescription = new By.ByCssSelector(".inventory_details_desc.large_size");
     private By productPrice = new By.ByClassName("inventory_details_price");
@@ -40,15 +36,6 @@ public class SLIndividualItemPage extends SitePage {
 
     public void addItemToCart(){
         driver.findElement(addItemToCart).click();
-    }
-
-    public int getNumberOfCartItems(){
-        int numberOfElements = 0;
-        List<WebElement> itemsInCart = driver.findElements(shoppingCartBadge);
-        for (WebElement ignored : itemsInCart){
-            numberOfElements++;
-        }
-        return numberOfElements;
     }
 
     public String getProductName(){
