@@ -2,6 +2,7 @@ package org.bddTest.stepDefs;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import org.DriversFactory;
 import org.PomUtility;
 import org.openqa.selenium.WebDriver;
 import org.pom.SLConfirmationOfOrderPage;
@@ -16,8 +17,7 @@ public class ConfirmationStepdefs {
 
     @And("I am on the confirmation page")
     public void iAmOnTheConfirmationPage() {
-        PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
-        PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
+        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
         driver = StepDefsUtil.driver;
         loginPage = new SlLoginPage(driver);
         inventoryPage = loginPage.Login("standard_user", "secret_sauce");
