@@ -22,11 +22,16 @@ public class CoreFunctionalityStepdefs {
     private SlLoginPage loginPage;
     private WebDriver driver;
 
-    @Before
+    @Before(order = 2)
     public void setup() {
 //        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
         driver = StepDefsUtil.driver;
         loginPage = new SlLoginPage(driver);
+    }
+
+    @Given("I am logged in")
+    public void iAmLoggedIn() {
+        loginPage.StandardUserLogin();
     }
 
     //CheckoutStep1Stepdefs
@@ -198,8 +203,8 @@ public class CoreFunctionalityStepdefs {
         Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", sitePage.getURL());
     }
 
-    @After
-    public void teardown() {
-        driver.quit();
-    }
+    //@After
+    //public void teardown() {
+    //    driver.quit();
+    //}
 }
