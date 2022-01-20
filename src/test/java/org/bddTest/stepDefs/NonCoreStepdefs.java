@@ -1,5 +1,6 @@
 package org.bddTest.stepDefs;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,6 +22,12 @@ public class NonCoreStepdefs {
     private SLIndividualItemPage slIndividualItemPage;
     private String productName;
 
+    @Before(order = 3)
+    public void setup() {
+        driver = StepDefsUtil.driver;
+        loginPage = new SlLoginPage(driver);
+    }
+
     @Then("The website should give me an error saying {string}")
     public void theWebsiteShouldGiveMeAnErrorSaying(String string) {
         String errorMessage = driver.findElement(By.cssSelector("*[data-test=\"error\"]")).getText().toLowerCase();
@@ -35,7 +42,7 @@ public class NonCoreStepdefs {
 
     @When("The first name field is empty")
     public void theFirstNameFieldIsEmpty() {
-        checkoutStep1Page.setFirstName("");
+        new SLCheckoutStep1Page(driver).setFirstName("");
     }
 
     @When("The last name field is empty")

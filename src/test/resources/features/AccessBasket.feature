@@ -8,7 +8,7 @@ Feature: As a shopper, I want to be able to go to the basket page from any other
     Then I should be able to view whats in my basket
 
   Scenario: Accessing basket from product page
-    And Im on the product page
+    And I am on the individual item page
     When I click the basket
     Then I should be able to view whats in my basket
 

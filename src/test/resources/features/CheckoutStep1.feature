@@ -2,6 +2,7 @@ Feature: As a shopper, I want to be able to give my personal details to be able 
 
   Background: Starting on the checkoutStep1 page and logged in
     Given I am logged in
+    And I am on the cart page
     And I am on checkoutStep1 page
 
   Scenario: Blank first name field

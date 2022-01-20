@@ -27,88 +27,84 @@ public class CoreFunctionalityStepdefs {
     public void setup() {
         //StepDefsUtil.setup();
         driver = StepDefsUtil.driver;
-        loginPage = new SlLoginPage(driver);
+
     }
 
     @Given("I am logged in")
     public void iAmLoggedIn() {
-        loginPage.StandardUserLogin();
+        StepdefData.getLoginPage().StandardUserLogin();
     }
 
     //CheckoutStep1Stepdefs
     @And("I am on checkoutStep1 page")
     public void iAmOnCheckoutStepPage1() {
-         sitePage = loginPage.Login("standard_user", "secret_sauce")
-                 .goToCart()
-                 .goToCheckoutStep1Page();
+         StepdefData.getCartPage().goToCheckoutStep1Page();
     }
 
     @And("I click on continue")
     public void iClickOnContinue() {
-        checkoutStep1Page.clickContinueButton();
+        StepdefData.getCheckoutStep1Page().clickContinueButton();
     }
 
     //ConfirmationStepdefs
 
     @And("I am on the confirmation page")
     public void iAmOnTheConfirmationPage() {
-        sitePage = loginPage.Login("standard_user", "secret_sauce");
-        sitePage = inventoryPage.goToCart()
-                .goToCheckoutStep1Page()
-                .goToCheckoutStep2Page()
-                .goToConfirmationPage();
+        //sitePage = loginPage.Login("standard_user", "secret_sauce");
+        //sitePage = inventoryPage.goToCart()
+        //        .goToCheckoutStep1Page()
+        //        .goToCheckoutStep2Page()
+        //        .goToConfirmationPage();
+        StepdefData.getCheckoutStep2Page().goToConfirmationPage();
     }
 
     @When("I click on back home")
     public void iClickOnBackHome() {
-        confirmationPage.returnToInventoryPage();
+        StepdefData.getConfirmationPage().returnToInventoryPage();
     }
 
     //EveryPage
     @Given("Im on the inventory page")
     public void imOnTheInventoryPage() {
-        sitePage = new SlLoginPage(driver).StandardUserLogin();
+        StepdefData.getLoginPage().StandardUserLogin();
     }
 
-    @Given("Im on the product page")
-    public void imOnTheProductPage() {
-        sitePage = new SlLoginPage(driver).StandardUserLogin().goToItem(1);
-    }
+    //@Given("Im on the product page")
+    //public void imOnTheProductPage() {
+    //    sitePage = new SlLoginPage(driver).StandardUserLogin().goToItem(1);
+    //}
 
     @Given("Im on the checkout step 1 page")
     public void imOnTheCheckoutStep1Page() {
-        sitePage = new SlLoginPage(driver).StandardUserLogin().goToCart().goToCheckoutStep1Page();
+        StepdefData.getLoginPage().StandardUserLogin().goToCart().goToCheckoutStep1Page();
     }
 
     @Given("Im on the checkout step 2 page")
     public void imOnTheCheckoutStep2Page() {
-        sitePage = new SlLoginPage(driver)
-                .StandardUserLogin()
-                .goToCart()
-                .goToCheckoutStep1Page()
+        StepdefData.getCheckoutStep1Page()
                 .goToCheckoutStep2Page();
     }
 
     @When("I click the basket")
     public void iClickTheBasket() {
-        sitePage = sitePage.goToCart();
+        StepdefData.getInventoryPage().goToCart(); //Default use of InventoryPage
     }
 
     //Individual
     @And("I am on the individual item page")
     public void iAmOnTheIndividualItemPage() {
-        sitePage = inventoryPage.goToItem(0);
+        StepdefData.getInventoryPage().goToItem(0);
         //String productName = individualItemPage.getProductName();
     }
 
     @When("I click on add to cart button")
     public void iClickOnAddToCartButton() {
-        individualItemPage.addItemToCart();
+        StepdefData.getIndividualItemPage().addItemToCart();
     }
 
     @Then("Cart icon shows one item")
     public void cartIconShowsOneItem() {
-        Assertions.assertTrue(individualItemPage.getNumberOfCartItems()==1);
+        Assertions.assertEquals(1, StepdefData.getIndividualItemPage().getNumberOfCartItems());
     }
 
     @Then("My item is in the cart")
@@ -176,7 +172,7 @@ public class CoreFunctionalityStepdefs {
     //Purchase
     @And("I am on the cart page")
     public void iAmOnTheCartPage() {
-        sitePage = inventoryPage.goToCart();
+        sitePage = new SLInventoryPage(driver).goToCart();
     }
 
     @When("I click on checkout")
