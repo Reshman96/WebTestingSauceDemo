@@ -1,6 +1,6 @@
 package org.pomTests;
 
-import org.PomUtility;
+import org.DriversFactory;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,8 +14,7 @@ public class LoginTest {
 
     @BeforeAll
     static void setupAll() {
-        PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
-        PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
+        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
     }
 
     @BeforeEach

@@ -5,6 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.DriversFactory;
 import org.PomUtility;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -20,8 +21,7 @@ public class CheckoutStep1Stepdefs {
 
     @Before
     public void setup() {
-        PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
-        PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
+        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
         driver = new ChromeDriver();
         loginPage = new SlLoginPage(driver);
     }

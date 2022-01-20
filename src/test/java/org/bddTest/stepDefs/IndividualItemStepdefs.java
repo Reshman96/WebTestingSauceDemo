@@ -5,7 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.PomUtility;
+import org.DriversFactory;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,8 +24,7 @@ public class IndividualItemStepdefs {
 
     @Before
     public void setup(){
-        PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
-        PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
+        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
         driver = new ChromeDriver();
         loginPage = new SlLoginPage(driver);
         loginPage.Login("standard_user", "secret_sauce");
