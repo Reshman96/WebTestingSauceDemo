@@ -4,6 +4,9 @@ Feature: As a shopper I want to be able to log in
   Scenario: Logging in with correct details
     When I enter valid username and password
     Then I will be logged in
+  Scenario: A valid user logs in and the images are correct
+    When I enter valid username and password
+    Then the product images will be correct
   Scenario: Logging in with incorrect details
     When I provide incorrect username and password
     Then I will not be logged in
