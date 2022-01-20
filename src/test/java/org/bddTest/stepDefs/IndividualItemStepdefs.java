@@ -35,7 +35,7 @@ public class IndividualItemStepdefs {
 
     @And("I am on the individual item page")
     public void iAmOnTheIndividualItemPage() {
-        slIndividualItemPage = slInventoryPage.goToItem(4);
+        slIndividualItemPage = slInventoryPage.goToItem(0);
         productName = slIndividualItemPage.getProductName();
     }
 
@@ -49,9 +49,19 @@ public class IndividualItemStepdefs {
         Assertions.assertTrue(slIndividualItemPage.getNumberOfCartItems()==1);
     }
 
+    @Then("My item is in the cart")
+    public void myItemIsInTheCart() {
+        Assertions.assertEquals(productName, cartPage.getItemNameInCart(0));
+    }
+
     @And("I click on remove button")
     public void iClickOnRemoveButton() {
         slIndividualItemPage.removeItemFromCart();
+    }
+
+    @And("I go to cart page")
+    public void iGoToCartPage() {
+        cartPage = slIndividualItemPage.goToCartPage();
     }
 
     @Then("Cart icon shows zero items")
@@ -59,25 +69,13 @@ public class IndividualItemStepdefs {
         Assertions.assertTrue(slIndividualItemPage.getNumberOfCartItems()==0);
     }
 
-    @After
-    public void tearDown(){
-        driver.quit();
-    }
-
-
-    @And("I go to cart page")
-    public void iGoToCartPage() {
-        cartPage = slIndividualItemPage.goToCartPage();
-    }
-
-    @Then("My item is in the cart")
-    public void myItemIsInTheCart() {
-        Assertions.assertEquals(productName, cartPage.getItemNameInCart(0));
-    }
-
     @Then("The cart is empty")
     public void theCartIsEmpty() {
         Assertions.assertThrows(IndexOutOfBoundsException.class,() -> cartPage.getItemNameInCart(0));
+    }
 
+    @After
+    public void tearDown(){
+        driver.quit();
     }
 }
