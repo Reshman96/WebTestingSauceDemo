@@ -1,16 +1,12 @@
 package org.pom;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.WebElement;
 import org.pom.inventoryPage.SLInventoryPage;
 
-import java.time.Duration;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public abstract class SitePage extends Page{
@@ -19,6 +15,7 @@ public abstract class SitePage extends Page{
     public By menuButton = new By.ById("react-burger-menu-btn");
     public By basketButton = new By.ById("shopping_cart_container");
     public By menuList = new By.ByClassName("bm-menu");
+    public By shoppingCartBadge = new By.ByClassName("shopping_cart_badge");
     public By twitterLink = new By.ByLinkText("Twitter"); //Classname = social_linkedin
     public By facebookLink = new By.ByLinkText("Facebook"); //Classname = social_facebook
     public By linkedInLink = new By.ByLinkText("LinkedIn"); //Classname = social_twitter
@@ -63,4 +60,12 @@ public abstract class SitePage extends Page{
         return new SLCartPage(driver);
     }
 
+    public int getNumberOfCartItems(){
+        int numberOfElements = 0;
+        List<WebElement> itemsInCart = driver.findElements(shoppingCartBadge);
+        for (WebElement ignored : itemsInCart){
+            numberOfElements++;
+        }
+        return numberOfElements;
+    }
 }
