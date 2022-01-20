@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriverService;
 import java.io.File;
 
 public class PomUtility {
-    private static String driverLocation = "src/test/resources";
+    private static String driverLocation;
 
     public static void setDriver(String driverKey, String pathToDriver){
         System.setProperty(driverKey, pathToDriver);
