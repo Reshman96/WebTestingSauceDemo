@@ -2,6 +2,10 @@ package org;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.opera.OperaDriver;
 
 public class DriversFactory {
     private static BrowsersEnums browser;
@@ -50,22 +54,19 @@ public class DriversFactory {
         switch (browser) {
             case CHROME:
                 return new ChromeDriver();
-        }
-        switch (browser) {
+
             case FIREFOX:
-                return new ChromeDriver();
-        }
-        switch (browser) {
+                return new FirefoxDriver();
+
             case IE:
-                return new ChromeDriver();
-        }
-        switch (browser) {
+                return new InternetExplorerDriver();
+
             case EDGE:
-                return new ChromeDriver();
-        }
-        switch (browser) {
+                return new EdgeDriver();
+
             case OPERA:
-                return new ChromeDriver();
+                return new OperaDriver();
+
         }
         return null;
     }
