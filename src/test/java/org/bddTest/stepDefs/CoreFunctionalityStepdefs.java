@@ -1,12 +1,10 @@
 package org.bddTest.stepDefs;
 
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.DriversFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.openqa.selenium.NoSuchElementException;
@@ -203,5 +201,20 @@ public class CoreFunctionalityStepdefs {
     @Then("I will be on the inventory page")
     public void iWillBeOnTheInventoryPage() {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", StepdefData.getInventoryPage().getURL()); //Technically Default use of InventoryPage
+    }
+
+    @And("I add the first item to the cart")
+    public void iAddTheFirstItemToTheCart() {
+        StepdefData.getInventoryPage().addToCart(0);
+    }
+
+    @And("I add the two item to the cart")
+    public void iAddTheTwoItemToTheCart() {
+        StepdefData.getInventoryPage().addToCart(1);
+    }
+
+    @And("I add the three item to the cart")
+    public void iAddTheThreeItemToTheCart() {
+        StepdefData.getInventoryPage().addToCart(2);
     }
 }
