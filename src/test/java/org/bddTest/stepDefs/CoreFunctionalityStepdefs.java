@@ -170,4 +170,19 @@ public class CoreFunctionalityStepdefs {
     public void iWillBeOnTheInventoryPage() {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", StepdefData.getInventoryPage().getURL()); //Technically Default use of InventoryPage
     }
+
+    @And("I add the first item to the cart")
+    public void iAddTheFirstItemToTheCart() {
+        StepdefData.getInventoryPage().addToCart(0);
+    }
+
+    @And("I add the two item to the cart")
+    public void iAddTheTwoItemToTheCart() {
+        StepdefData.getInventoryPage().addToCart(1);
+    }
+
+    @And("I add the three item to the cart")
+    public void iAddTheThreeItemToTheCart() {
+        StepdefData.getInventoryPage().addToCart(2);
+    }
 }

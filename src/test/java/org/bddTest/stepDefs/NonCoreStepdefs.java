@@ -7,11 +7,6 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.pom.SLCartPage;
-import org.pom.SLCheckoutStep1Page;
-import org.pom.SLIndividualItemPage;
-import org.pom.SlLoginPage;
-import org.pom.inventoryPage.SLInventoryPage;
 
 public class NonCoreStepdefs {
     private WebDriver driver;
@@ -133,6 +128,25 @@ public class NonCoreStepdefs {
         Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getCheckoutStep2Page().getURL());
     }
 
+    @When("I click on the first item in checkoutStep2")
+    public void iClickOnTheFirstItemInCheckoutStep2() {
+        StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(0);
+    }
+
+    @Then("I go to the individual item page")
+    public void iGoToTheIndividualItemPage() {
+        Assertions.assertTrue(StepdefData.getIndividualItemPage().getURL().contains("https://www.saucedemo.com/inventory-item.html?id="));
+    }
+
+    @When("I click on the second item in checkoutStep2")
+    public void iClickOnTheSecondItemInCheckoutStep2() {
+        StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(1);
+    }
+
+    @When("I click on the third item in checkoutStep2")
+    public void iClickOnTheThirdItemInCheckoutStep2() {
+        StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(2);
+      
     @And("I click to reset the app state")
     public void iClickToResetTheAppState() {
         StepdefData.getInventoryPage().resetAppState();
