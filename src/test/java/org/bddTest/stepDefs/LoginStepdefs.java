@@ -11,17 +11,7 @@ import org.pom.inventoryPage.SLInventoryPage;
 
 public class LoginStepdefs {
 
-    private SlLoginPage loginPage;
-    private SLInventoryPage inventoryPage;
-    private WebDriver driver;
-
-    @Given("I am on the login page")
-    public void iAmOnTheLoginPage() {
-        driver = StepDefsUtil.driver;
-        loginPage = new SlLoginPage(driver);
-    }
-
-    @When("I enter valid username and password")
+    @When("I enter a valid username and password")
     public void iEnterValidUsernameAndPassword() {
         StepdefData.getLoginPage().Login("standard_user", "secret_sauce");
     }
@@ -31,7 +21,7 @@ public class LoginStepdefs {
         Assertions.assertEquals("https://www.saucedemo.com/inventory.html", StepdefData.getInventoryPage().getURL());
     }
 
-    @When("I provide incorrect username and password")
+    @When("I provide an incorrect username and password")
     public void iProvideIncorrectUsernameAndPassword() {
         StepdefData.getLoginPage().Login("incorrect", "incorrect");
     }
@@ -41,7 +31,7 @@ public class LoginStepdefs {
         Assertions.assertEquals("https://www.saucedemo.com/", StepdefData.getLoginPage().getURL());
     }
 
-    @When("I enter valid username and password but the account is locked out")
+    @When("I enter a valid username and password but the account is locked out")
     public void iEnterValidUsernameAndPasswordButTheAccountIsLockedOut() {
         StepdefData.getLoginPage().Login("locked_out_user", "secret_sauce");
     }
@@ -51,12 +41,12 @@ public class LoginStepdefs {
         StepdefData.getLoginPage().Login("", "");
     }
 
-    @When("I enter valid username and password but the account is a problem user")
+    @When("I enter a valid username and password but the account is a problem user")
     public void iEnterValidUsernameAndPasswordButTheAccountIsAProblemUser() {
         StepdefData.getLoginPage().Login("problem_user", "secret_sauce");
     }
 
-    @When("I enter valid username and password but the account is a performance glitch user")
+    @When("I enter a valid username and password but the account is a performance glitch user")
     public void iEnterValidUsernameAndPasswordButTheAccountIsAPerformanceGlitchUser() {
         StepdefData.getLoginPage().Login("performance_glitch_user", "secret_sauce");
     }
@@ -69,5 +59,10 @@ public class LoginStepdefs {
     @Then("the product images will be correct")
     public void theProductImagesWillBeCorrect() {
         Assertions.assertEquals("https://www.saucedemo.com/static/media/sauce-backpack-1200x1500.34e7aa42.jpg", StepdefData.getInventoryPage().getInventoryElementImageLink(0));
+    }
+
+    @Given("I am on the login page")
+    public void iAmOnTheLoginPage() {
+        //blank because we should already be there from setup
     }
 }

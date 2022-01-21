@@ -19,11 +19,8 @@ public class StepDefsUtil {
     @Before(order = 1)
     public void setup() {
         DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
-        System.out.println("Setup called!");
         driver = DriversFactory.getWebDriver();
         StepdefData.setupClasses(driver);
-
-
     }
 
     @After

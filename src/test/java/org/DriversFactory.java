@@ -45,7 +45,7 @@ public class DriversFactory {
         switch (browser) {
             case CHROME:
                 ChromeOptions options = new ChromeOptions();
-                //options.setHeadless(true);
+                options.setHeadless(true);
                 return new ChromeDriver(options);
             case FIREFOX:
                 return new FirefoxDriver();
