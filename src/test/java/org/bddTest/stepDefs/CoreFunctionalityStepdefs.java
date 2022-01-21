@@ -185,4 +185,14 @@ public class CoreFunctionalityStepdefs {
     public void iAddTheThreeItemToTheCart() {
         StepdefData.getInventoryPage().addToCart(2);
     }
+
+    @When("I click to reset the app state")
+    public void iClickToResetTheAppState() {
+        StepdefData.getInventoryPage().resetAppState();
+    }
+
+    @Then("The page state will be reset")
+    public void thePageStateWillBeReset() {
+        Assertions.assertEquals(0, StepdefData.getInventoryPage().getNumberOfCartItems());
+    }
 }
