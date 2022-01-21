@@ -1,23 +1,22 @@
 package org;
 
-import org.openqa.selenium.chrome.ChromeDriverService;
-import java.io.File;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Wait;
 
 public class PomUtility {
-    private static String defaultDriverLocation = "src/test/resources/chromedriver.exe";
+    private static String driverLocation;
 
-    public static void setDriverLocation(String pathToDriver){
-        System.setProperty("webdriver.chrome.driver", pathToDriver);
+    public static void setDriver(String driverKey, String pathToDriver){
+        System.setProperty(driverKey, pathToDriver);
     }
 
-    public static ChromeDriverService setChromeDriverService(String pathToDriver){
-        return new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File(pathToDriver))
-                .usingAnyFreePort()
-                .build();
+
+    public static String getDriverLocation() {
+        return driverLocation;
     }
 
-    public static String getDefaultDriverLocation() {
-        return defaultDriverLocation;
+    public static void setDriverLocation(String driverLocation) {
+        PomUtility.driverLocation = driverLocation;
     }
 }

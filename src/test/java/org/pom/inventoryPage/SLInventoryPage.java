@@ -48,4 +48,12 @@ public class SLInventoryPage extends SitePage {
         driver.findElement(By.cssSelector("option[value='" + option + "']")).click();
         return this;
     }
+
+    public String getInventoryElementImageLink(int itemNo) {
+        return getInventoryElement(itemNo).findElement(By.className("inventory_item_img")).findElement(By.className("inventory_item_img")).getAttribute("src");
+    }
+
+    public String getInventoryElementName(int itemNo) {
+        return getInventoryElement(itemNo).findElement(By.className("inventory_item_name")).getText();
+    }
 }

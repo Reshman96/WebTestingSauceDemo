@@ -1,6 +1,6 @@
 package org.pomTests;
 
-import org.PomUtility;
+import org.DriversFactory;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,8 +12,12 @@ public class checkoutStep2Tests {
 
     @BeforeAll
     static void setupAll() {
-        PomUtility.setDriverLocation(PomUtility.getDefaultDriverLocation());
-        PomUtility.setChromeDriverService(PomUtility.getDefaultDriverLocation());
+        DriversFactory.driverLoader(DriversFactory.BrowsersEnums.CHROME);
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        driver.quit();
     }
 
     @BeforeEach
@@ -35,13 +39,26 @@ public class checkoutStep2Tests {
 
     }
 
+    @Test
+    @DisplayName("Go to individual page and click item 1")
+    void goToIndividualPageAndClickItem1() {
+        Assertions.assertEquals("https://www.saucedemo.com/inventory-item.html?id=0", loginPage.Login("standard_user", "secret_sauce").addToCart(1).goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(0).getURL());
+    }
+
+    @Test
+    @DisplayName("Go to individual page and click item 2")
+    void goToIndividualPageAndClickItem2() {
+        Assertions.assertEquals("https://www.saucedemo.com/inventory-item.html?id=1", loginPage.Login("standard_user", "secret_sauce").addToCart(1).addToCart(2).goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(1).getURL());
+    }
+
+    @Test
+    @DisplayName("Go to individual page and click item 2, should throw exception")
+    void goToIndividualPageAndClickItem2ShouldThrowException() {
+        Assertions.assertThrowsExactly(IndexOutOfBoundsException.class, () -> loginPage.Login("standard_user", "secret_sauce").addToCart(1).goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(1).getURL());
+    }
+
     @AfterEach
     void tearDown() {
         driver.close();
-    }
-
-    @AfterAll
-    static void tearDownAll() {
-        driver.quit();
     }
 }
