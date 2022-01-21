@@ -14,29 +14,13 @@ import org.pom.inventoryPage.SLInventoryPage;
 
 public class CoreFunctionalityStepdefs {
 
-    private SLCheckoutStep1Page checkoutStep1Page;
-    private SLInventoryPage inventoryPage;
-    private SLIndividualItemPage individualItemPage;
-    private SitePage sitePage;
-    private SLCartPage cartPage;
-    private SLConfirmationOfOrderPage confirmationPage;
-    private SlLoginPage loginPage;
-    private WebDriver driver;
-
-    @Before(order = 2)
-    public void setup() {
-        //StepDefsUtil.setup();
-        driver = StepDefsUtil.driver;
-
-    }
-
     @Given("I am logged in")
     public void iAmLoggedIn() {
         StepdefData.getLoginPage().StandardUserLogin();
     }
 
     //CheckoutStep1Stepdefs
-    @And("I am on checkoutStep1 page")
+    @And("I am on checkout step 1 page")
     public void iAmOnCheckoutStepPage1() {
          StepdefData.getCartPage().goToCheckoutStep1Page();
     }
@@ -50,11 +34,6 @@ public class CoreFunctionalityStepdefs {
 
     @And("I am on the confirmation page")
     public void iAmOnTheConfirmationPage() {
-        //sitePage = loginPage.Login("standard_user", "secret_sauce");
-        //sitePage = inventoryPage.goToCart()
-        //        .goToCheckoutStep1Page()
-        //        .goToCheckoutStep2Page()
-        //        .goToConfirmationPage();
         StepdefData.getCheckoutStep2Page().goToConfirmationPage();
     }
 
@@ -64,7 +43,7 @@ public class CoreFunctionalityStepdefs {
     }
 
     //EveryPage
-    @Given("Im on the inventory page")
+    @Given("I am on the inventory page")
     public void imOnTheInventoryPage() {
         try {
             StepdefData.getLoginPage().StandardUserLogin();
@@ -73,23 +52,18 @@ public class CoreFunctionalityStepdefs {
         }
     }
 
-    //@Given("Im on the product page")
-    //public void imOnTheProductPage() {
-    //    sitePage = new SlLoginPage(driver).StandardUserLogin().goToItem(1);
-    //}
-
-    @Given("Im on the checkout step 1 page")
+    @Given("I am on the checkout step 1 page")
     public void imOnTheCheckoutStep1Page() {
         StepdefData.getCartPage().goToCheckoutStep1Page();
     }
 
-    @Given("Im on the checkout step 2 page")
+    @Given("I am on the checkout step 2 page")
     public void imOnTheCheckoutStep2Page() {
         StepdefData.getCheckoutStep1Page()
                 .goToCheckoutStep2Page();
     }
 
-    @When("I click the basket")
+    @When("I click on the basket")
     public void iClickTheBasket() {
         StepdefData.getInventoryPage().goToCart(); //Default use of InventoryPage
     }
@@ -98,7 +72,6 @@ public class CoreFunctionalityStepdefs {
     @And("I am on the individual item page")
     public void iAmOnTheIndividualItemPage() {
         StepdefData.getInventoryPage().goToItem(0);
-        //String productName = individualItemPage.getProductName();
     }
 
     @When("I click on add to cart button")
@@ -124,8 +97,8 @@ public class CoreFunctionalityStepdefs {
         StepdefData.getIndividualItemPage().removeItemFromCart();
     }
 
-    @And("I go to cart page")
-    public void iGoToCartPage() {
+    @And("I click on cart image")
+    public void IClickOnCartImage() {
         StepdefData.getIndividualItemPage().goToCartPage();
     }
 
@@ -162,11 +135,6 @@ public class CoreFunctionalityStepdefs {
         StepdefData.getInventoryPage().returnToShop();
     } //Default use of InventoryPage
 
-    //@Then("I will be on the inventory page")
-    //public void iWillBeOnTheInventoryPage() {
-    //    Assertions.assertInstanceOf(SLInventoryPage.class, sitePage);
-    //}
-
     //Purchase
     @And("I am on the cart page")
     public void iAmOnTheCartPage() {
@@ -193,8 +161,8 @@ public class CoreFunctionalityStepdefs {
         StepdefData.getCheckoutStep1Page().goToCheckoutStep2Page();
     }
 
-    @Then("The website should thank me for my order, and say it is on it’s way.")
-    public void theWebsiteShouldThankMeForMyOrderAndSayItIsOnItSWay() {
+    @Then("The website should thank me for my order and say it is on the way")
+    public void theWebsiteShouldThankMeForMyOrderAndSayItIsOnTheWay() {
         Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getInventoryPage().getURL()); //Default use of InventoryPage
     }
 

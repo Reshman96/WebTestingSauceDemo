@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 public class NonCoreStepdefs {
     private WebDriver driver;
 
-    @Before(order = 3)
+    @Before(order = 2)
     public void setup() {
         driver = StepDefsUtil.driver;
     }
@@ -123,7 +123,7 @@ public class NonCoreStepdefs {
         //needs SitePage implementation
     }
 
-    @Then("I should go to checkoutStep2 page")
+    @Then("I should go to the checkout step 2 page")
     public void iShouldGoToCheckoutStep2Page() {
         Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getCheckoutStep2Page().getURL());
     }
@@ -146,5 +146,14 @@ public class NonCoreStepdefs {
     @When("I click on the third item in checkoutStep2")
     public void iClickOnTheThirdItemInCheckoutStep2() {
         StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(2);
+      
+    @And("I click to reset the app state")
+    public void iClickToResetTheAppState() {
+        StepdefData.getInventoryPage().resetAppState();
+    }
+
+    @Then("The page state will be reset")
+    public void thePageStateWillBeReset() {
+        Assertions.assertEquals(0, StepdefData.getInventoryPage().goToCart().getNumberOfCartItems());
     }
 }

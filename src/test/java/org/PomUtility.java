@@ -1,8 +1,5 @@
 package org;
 
-import org.openqa.selenium.chrome.ChromeDriverService;
-
-import java.io.File;
 
 public class PomUtility {
     private static String driverLocation;
@@ -11,12 +8,6 @@ public class PomUtility {
         System.setProperty(driverKey, pathToDriver);
     }
 
-    public static ChromeDriverService setDriverService(String pathToDriver){
-        return new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File(pathToDriver))
-                .usingAnyFreePort()
-                .build();
-    }
 
     public static String getDriverLocation() {
         return driverLocation;

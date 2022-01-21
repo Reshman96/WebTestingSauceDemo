@@ -10,9 +10,15 @@ import java.util.concurrent.TimeUnit;
 public abstract class SitePage extends Page{
     private WebDriver driver;
 
-    public By menuButton = new By.ById("react-burger-menu-btn");
+    public By menuButton = new By.ByClassName("bm-burger-button");
+    public By hidden = new By.ByCssSelector("[aria-hidden='true']");
     public By basketButton = new By.ById("shopping_cart_container");
-    public By menuList = new By.ByClassName("bm-menu");
+    public By menuList = new By.ById("menu_button_container");
+    public By itemList = new By.ByClassName("bm-item-list");
+    public By logout = new By.ById("logout_sidebar_link");
+    public By inventory = new By.ById("inventory_sidebar_link");
+    public By about = new By.ById("about_sidebar_link");
+    public By reset = new By.ById("reset_sidebar_link");
     public By shoppingCartBadge = new By.ByClassName("shopping_cart_badge");
     public By twitterLink = new By.ByLinkText("Twitter"); //Classname = social_linkedin
     public By facebookLink = new By.ByLinkText("Facebook"); //Classname = social_facebook
@@ -25,36 +31,52 @@ public abstract class SitePage extends Page{
 
     private void openBurgerMenu() {
         try{
-            driver.findElement(By.id("menu_button_container")).findElement(By.cssSelector("[aria-hidden='true']"));
-            driver.findElement(By.className("bm-burger-button")).click();
+            driver.findElement(menuList).findElement(hidden);
+            driver.findElement(menuButton).click();
         } catch (NoSuchElementException ignored) {} //Ignored as that means its already open
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
 
     public SlLoginPage logout() {
         openBurgerMenu();
-        driver.findElement(By.className("bm-item-list")).findElement(By.id("logout_sidebar_link")).click();
+        driver.findElement(itemList).findElement(logout).click();
         return new SlLoginPage(driver);
     }
 
     public SLInventoryPage returnToShop() {
         openBurgerMenu();
-        driver.findElement(By.className("bm-item-list")).findElement(By.id("inventory_sidebar_link")).click();
+        driver.findElement(itemList).findElement(inventory).click();
         return new SLInventoryPage(driver);
     }
 
     public String goToCompanyPage() {
         openBurgerMenu();
-        driver.findElement(By.className("bm-item-list")).findElement(By.id("about_sidebar_link")).click();
+        driver.findElement(itemList).findElement(about).click();
+        return driver.getCurrentUrl();
+    }
+
+    public String goToTwitterPage() {
+        driver.findElement(twitterLink).click();
+        return driver.getCurrentUrl();
+    }
+
+    public String goToFacebookPage() {
+        driver.findElement(facebookLink).click();
+        return driver.getCurrentUrl();
+    }
+
+    public String goToLinkedInPage() {
+        driver.findElement(linkedInLink).click();
         return driver.getCurrentUrl();
     }
 
     public void resetAppState() {
         openBurgerMenu();
-        driver.findElement(By.className("bm-item-list")).findElement(By.id("reset_sidebar_link")).click();
+        driver.findElement(itemList).findElement(reset).click();
     }
+
     public SLCartPage goToCart() {
-        driver.findElement(By.id("shopping_cart_container")).click();
+        driver.findElement(basketButton).click();
         return new SLCartPage(driver);
     }
 
@@ -74,4 +96,5 @@ public abstract class SitePage extends Page{
             return 0;
         }
     }
+
 }

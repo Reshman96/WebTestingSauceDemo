@@ -2,11 +2,23 @@ package org;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeDriverService;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.GeckoDriverService;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerDriverService;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaDriverService;
+import org.openqa.selenium.opera.OperaOptions;
+import org.openqa.selenium.remote.service.DriverService;
+
+import java.io.File;
 
 public class DriversFactory {
     private static BrowsersEnums browser;
@@ -41,26 +53,68 @@ public class DriversFactory {
             }
         }
     }
+
     public static WebDriver getWebDriver() {
         switch (browser) {
             case CHROME:
                 ChromeOptions options = new ChromeOptions();
-                //options.setHeadless(true);
+                options.setHeadless(true);
                 return new ChromeDriver(options);
+
             case FIREFOX:
-                return new FirefoxDriver();
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                return new FirefoxDriver(firefoxOptions);
             case IE:
-                return new InternetExplorerDriver();
+                InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
+                return new InternetExplorerDriver(internetExplorerOptions);
             case EDGE:
-                return new EdgeDriver();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                return new EdgeDriver(edgeOptions);
             case OPERA:
-                return new OperaDriver();
+                OperaOptions operaOptions = new OperaOptions();
+                return new OperaDriver(operaOptions);
         }
         throw new IllegalArgumentException();
     }
 
+
+
+    public static DriverService getDriverService(String pathToDriver) {
+        switch (browser) {
+            case CHROME:
+                return new ChromeDriverService.Builder()
+                        .usingDriverExecutable(new File(pathToDriver))
+                        .usingAnyFreePort()
+                        .build();
+
+            case FIREFOX:
+                return new GeckoDriverService.Builder()
+                        .usingDriverExecutable(new File(pathToDriver))
+                        .usingAnyFreePort()
+                        .build();
+
+            case IE:
+                return new InternetExplorerDriverService.Builder()
+                        .usingDriverExecutable(new File(pathToDriver))
+                        .usingAnyFreePort()
+                        .build();
+
+            case EDGE:
+                return new EdgeDriverService.Builder()
+                        .usingDriverExecutable(new File(pathToDriver))
+                        .usingAnyFreePort()
+                        .build();
+
+            case OPERA:
+                return new OperaDriverService.Builder()
+                        .usingDriverExecutable(new File(pathToDriver))
+                        .usingAnyFreePort()
+                        .build();
+
+        }
+        throw new IllegalArgumentException();
+    }
     public enum BrowsersEnums {
         CHROME, FIREFOX, IE, EDGE, OPERA
     }
-
 }
