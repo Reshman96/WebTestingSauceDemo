@@ -2,7 +2,8 @@ Feature: As a shopper, I want to be able to give my personal details to be able 
 
   Background: Starting on the checkoutStep1 page and logged in
     Given I am logged in
-    And I am on checkoutStep1 page
+    And I am on the cart page
+    And I am on checkout step 1 page
 
   Scenario: Blank first name field
     When The first name field is empty
@@ -27,4 +28,4 @@ Feature: As a shopper, I want to be able to give my personal details to be able 
     And The last name field is filled
     And The postal code field is filled
     And I click on continue
-    Then I should go to checkoutStep2 page
+    Then I should go to the checkout step 2 page

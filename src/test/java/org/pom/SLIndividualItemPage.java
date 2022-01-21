@@ -17,7 +17,6 @@ public class SLIndividualItemPage extends SitePage {
     public SLIndividualItemPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        driver.get("https://www.saucedemo.com/inventory-item.html?id=0");
     }
 
     public SLInventoryPage goToInventoryPage(){

@@ -1,25 +1,21 @@
 package org.bddTest.stepDefs;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.pom.SLCartPage;
-import org.pom.SLCheckoutStep1Page;
-import org.pom.SLIndividualItemPage;
-import org.pom.SlLoginPage;
-import org.pom.inventoryPage.SLInventoryPage;
 
 public class NonCoreStepdefs {
     private WebDriver driver;
-    private SlLoginPage loginPage;
-    private SLInventoryPage inventoryPage;
-    private SLCheckoutStep1Page checkoutStep1Page;
-    private SLCartPage cartPage;
-    private SLIndividualItemPage slIndividualItemPage;
-    private String productName;
+    private String twitterURL, facebookURL, linkedInURL;
+
+    @Before(order = 2)
+    public void setup() {
+        driver = StepDefsUtil.driver;
+    }
 
     @Then("The website should give me an error saying {string}")
     public void theWebsiteShouldGiveMeAnErrorSaying(String string) {
@@ -35,41 +31,132 @@ public class NonCoreStepdefs {
 
     @When("The first name field is empty")
     public void theFirstNameFieldIsEmpty() {
-        checkoutStep1Page.setFirstName("");
+        StepdefData.getCheckoutStep1Page().setFirstName("");
     }
 
     @When("The last name field is empty")
     public void theLastNameFieldIsEmpty() {
-        checkoutStep1Page.setLastName("");
+        StepdefData.getCheckoutStep1Page().setLastName("");
     }
 
     @When("The postal code field is empty")
     public void thePostalCodeFieldIsEmpty() {
-        checkoutStep1Page.setPostalCode("");
+        StepdefData.getCheckoutStep1Page().setPostalCode("");
     }
 
     @And("The first name field is filled")
     public void theFirstNameFieldIsFilled() {
-        checkoutStep1Page.setFirstName("Luciano");
+        StepdefData.getCheckoutStep1Page().setFirstName("Luciano");
     }
 
     @And("The last name field is filled")
     public void theLastNameFieldIsFilled() {
-        checkoutStep1Page.setLastName("Big Tuna");
+        StepdefData.getCheckoutStep1Page().setLastName("Big Tuna");
     }
 
     @And("The postal code field is filled")
     public void thePostalCodeFieldIsFilled() {
-        checkoutStep1Page.setPostalCode("0123");
+        StepdefData.getCheckoutStep1Page().setPostalCode("0123");
     }
 
     @When("I click on logout button")
     public void iClickOnLogoutButton() {
-        loginPage = inventoryPage.logout();
+        StepdefData.getInventoryPage().logout();
     }
 
     @Then("I will be logged out")
     public void iWillBeLoggedOut() {
-        Assertions.assertEquals("https://www.saucedemo.com/", loginPage.getURL());
+        Assertions.assertEquals("https://www.saucedemo.com/", StepdefData.getLoginPage().getURL());
     }
+
+    @When("I click on the twitter icon")
+    public void iClickOnTheTwitterIcon() {
+        twitterURL = StepdefData.getInventoryPage().goToTwitterPage();
+    }
+
+    @Then("I go to the company's twitter page")
+    public void iGoToTheCompanySTwitterPage() {
+        Assertions.assertEquals("https://twitter.com/saucelabs", twitterURL);
+    }
+
+    @When("I click on the facebook icon")
+    public void iClickOnTheFacebookIcon() {
+        facebookURL = StepdefData.getInventoryPage().goToFacebookPage();
+    }
+
+    @Then("I go to the company's facebook page")
+    public void iGoToTheCompanySFacebookPage() {
+        Assertions.assertEquals("https://www.facebook.com/saucelabs", facebookURL);
+    }
+
+    @When("I click on the linkedin icon")
+    public void iClickOnTheLinkedinIcon() {
+        linkedInURL = StepdefData.getInventoryPage().goToLinkedInPage();
+    }
+
+    @Then("I go to the company's linkedin page")
+    public void iGoToTheCompanySLinkedinPage() {
+        Assertions.assertEquals("https://www.linkedin.com/company/sauce-labs/", linkedInURL);
+    }
+
+    @When("I click on the about option on the Hamburger menu")
+    public void iClickOnTheAboutOptionOnTheHamburgerMenu() {
+        StepdefData.getInventoryPage().goToCompanyPage();
+    }
+
+    @Then("I go to the company's about page")
+    public void iGoToTheCompanySAboutPage() {
+        Assertions.assertEquals("https://saucelabs.com/", StepdefData.getInventoryPage().getURL());
+    }
+
+    @When("I click on the reset app state option on the Hamburger menu")
+    public void iClickOnTheResetAppStateOptionOnTheHamburgerMenu() {
+        StepdefData.getInventoryPage().resetAppState();
+    }
+
+    @Then("I remove all the items from the basket")
+    public void iRemoveAllTheItemsFromTheBasket() {
+        Assertions.assertEquals(0, StepdefData.getInventoryPage().getNumberOfCartItems());
+    }
+
+    @Then("I should be able to view whats in my basket")
+    public void iShouldBeAbleToViewWhatsInMyBasket() {
+        Assertions.assertEquals("https://www.saucedemo.com/cart.html", StepdefData.getCartPage().getURL());
+    }
+
+    @Then("I should go to the checkout step 2 page")
+    public void iShouldGoToCheckoutStep2Page() {
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getCheckoutStep2Page().getURL());
+    }
+
+    @When("I click on the first item in checkoutStep2")
+    public void iClickOnTheFirstItemInCheckoutStep2() {
+        StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(0);
+    }
+
+    @Then("I go to the individual item page")
+    public void iGoToTheIndividualItemPage() {
+        Assertions.assertTrue(StepdefData.getIndividualItemPage().getURL().contains("https://www.saucedemo.com/inventory-item.html?id="));
+    }
+
+    @When("I click on the second item in checkoutStep2")
+    public void iClickOnTheSecondItemInCheckoutStep2() {
+        StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(1);
+    }
+
+    @When("I click on the third item in checkoutStep2")
+    public void iClickOnTheThirdItemInCheckoutStep2() {
+        StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(2);
+    }
+      
+    @And("I click to reset the app state")
+    public void iClickToResetTheAppState() {
+        StepdefData.getInventoryPage().resetAppState();
+    }
+
+    @Then("The page state will be reset")
+    public void thePageStateWillBeReset() {
+        Assertions.assertEquals(0, StepdefData.getInventoryPage().goToCart().getNumberOfCartItems());
+    }
+
 }
