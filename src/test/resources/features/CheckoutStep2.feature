@@ -6,8 +6,8 @@ Feature: As a shopper, I want to be able to view each individual item midway thr
     And I add the two item to the cart
     And I add the three item to the cart
     And I am on the cart page
-    And Im on the checkout step 1 page
-    And Im on the checkout step 2 page
+    And I am on the checkout step 1 page
+    And I am on the checkout step 2 page
 
     Scenario:
       When I click on the first item in checkoutStep2
