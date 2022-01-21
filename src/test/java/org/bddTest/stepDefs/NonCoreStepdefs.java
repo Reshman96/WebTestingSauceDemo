@@ -19,6 +19,7 @@ import java.util.function.Function;
 
 public class NonCoreStepdefs {
     private WebDriver driver;
+    private String twitterURL, facebookURL, linkedInURL;
 
     @Before(order = 2)
     public void setup() {
@@ -79,32 +80,32 @@ public class NonCoreStepdefs {
 
     @When("I click on the twitter icon")
     public void iClickOnTheTwitterIcon() {
-        //needs SitePage implementation
+        twitterURL = StepdefData.getInventoryPage().goToTwitterPage();
     }
 
     @Then("I go to the company's twitter page")
     public void iGoToTheCompanySTwitterPage() {
-        //needs SitePage implementation
+        Assertions.assertEquals("https://twitter.com/saucelabs", twitterURL);
     }
 
     @When("I click on the facebook icon")
     public void iClickOnTheFacebookIcon() {
-        //needs SitePage implementation
+        facebookURL = StepdefData.getInventoryPage().goToFacebookPage();
     }
 
     @Then("I go to the company's facebook page")
     public void iGoToTheCompanySFacebookPage() {
-        //needs SitePage implementation
+        Assertions.assertEquals("https://www.facebook.com/saucelabs", facebookURL);
     }
 
     @When("I click on the linkedin icon")
     public void iClickOnTheLinkedinIcon() {
-        //needs SitePage implementation
+        linkedInURL = StepdefData.getInventoryPage().goToLinkedInPage();
     }
 
     @Then("I go to the company's linkedin page")
     public void iGoToTheCompanySLinkedinPage() {
-        //needs SitePage implementation
+        Assertions.assertEquals("https://www.linkedin.com/company/sauce-labs/", linkedInURL);
     }
 
     @When("I click on the about option on the Hamburger menu")
@@ -124,12 +125,12 @@ public class NonCoreStepdefs {
 
     @Then("I remove all the items from the basket")
     public void iRemoveAllTheItemsFromTheBasket() {
-        //needs SitePage implementation
+        Assertions.assertEquals(0, StepdefData.getInventoryPage().getNumberOfCartItems());
     }
 
     @Then("I should be able to view whats in my basket")
     public void iShouldBeAbleToViewWhatsInMyBasket() {
-        //needs SitePage implementation
+        Assertions.assertEquals("https://www.saucedemo.com/cart.html", StepdefData.getCartPage().getURL());
     }
 
     @Then("I should go to the checkout step 2 page")

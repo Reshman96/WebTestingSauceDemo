@@ -14,8 +14,8 @@ This was created over 3 days in a group of 7 people using scrum.
 * [Authors and acknowledgment](#authors-and-acknowledgement)
 
 ## How to use
-To use this framework, simply clone this repository and start writing either unit tests or feature tests
-in cucumber.
+To use this framework, simply clone this repository and add a web driver to the resources folder, then 
+start writing either unit tests or feature tests in cucumber.
 
 ## Areas of potential extension
 The easiest and best way to extend this framework is to just add more simple cucumber statements. If you want to

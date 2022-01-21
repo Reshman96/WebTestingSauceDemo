@@ -64,6 +64,7 @@ Feature: As a shopper, I want to be able to interact with the Hamburger menu
     Then I will be on the inventory page
 
     #Reset app state scenarios
+  #Add one to cart so we can see it reset
   Scenario: I click on reset app state
     And I click on add to cart button
     When I click to reset the app state
