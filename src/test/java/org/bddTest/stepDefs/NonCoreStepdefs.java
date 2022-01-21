@@ -105,7 +105,7 @@ public class NonCoreStepdefs {
 
     @Then("I go to the company's linkedin page")
     public void iGoToTheCompanySLinkedinPage() {
-        Assertions.assertEquals("https://www.linkedin.com/company/sauce-labs/", linkedInURL);
+        Assertions.assertTrue(linkedInURL.contains("https://www.linkedin.com"));
     }
 
     @When("I click on the about option on the Hamburger menu")
