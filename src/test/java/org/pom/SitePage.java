@@ -8,7 +8,7 @@ import org.pom.inventoryPage.SLInventoryPage;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public abstract class SitePage extends Page{
+public abstract class SitePage extends Page {
     private final WebDriver driver;
 
     public By menuButton = new By.ByClassName("bm-burger-button");
@@ -31,10 +31,11 @@ public abstract class SitePage extends Page{
     }
 
     private void openBurgerMenu() {
-        try{
+        try {
             driver.findElement(menuList).findElement(hidden);
             driver.findElement(menuButton).click();
-        } catch (NoSuchElementException ignored) {} //Ignored as that means its already open
+        } catch (NoSuchElementException ignored) {
+        } //Ignored as that means its already open
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
     }
 
@@ -78,7 +79,7 @@ public abstract class SitePage extends Page{
         String originalTab = driver.getWindowHandle();
         Set<String> handles = driver.getWindowHandles();
         System.out.println(handles);
-        for(String tab : handles) {
+        for (String tab : handles) {
             if (!originalTab.equals(tab)) {
                 driver.switchTo().window(tab);
                 break;
@@ -96,21 +97,11 @@ public abstract class SitePage extends Page{
         return new SLCartPage(driver);
     }
 
-//    public int getNumberOfCartItems(){
-////        int numberOfElements = 0;
-////        List<WebElement> itemsInCart = driver.findElements(shoppingCartBadge);
-////        for (WebElement ignored : itemsInCart){
-////            numberOfElements++;
-////        }
-////        return numberOfElements;
-////    }
-
-    public int getNumberOfCartItems(){
+    public int getNumberOfCartItems() {
         try {
             return Integer.parseInt(driver.findElement(shoppingCartBadge).getText());
         } catch (NoSuchElementException e) {
             return 0;
         }
     }
-
 }

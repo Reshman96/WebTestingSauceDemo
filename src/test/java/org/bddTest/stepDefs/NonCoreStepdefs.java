@@ -2,11 +2,20 @@ package org.bddTest.stepDefs;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.PomUtility;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 public class NonCoreStepdefs {
     private WebDriver driver;
@@ -148,7 +157,7 @@ public class NonCoreStepdefs {
     public void iClickOnTheThirdItemInCheckoutStep2() {
         StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(2);
     }
-      
+
     @And("I click to reset the app state")
     public void iClickToResetTheAppState() {
         StepdefData.getInventoryPage().resetAppState();
@@ -159,4 +168,77 @@ public class NonCoreStepdefs {
         Assertions.assertEquals(0, StepdefData.getInventoryPage().goToCart().getNumberOfCartItems());
     }
 
+    //EXAMPLE ONES//////////////////////////////
+
+    @Given("I am logged in \\(Slowed down)")
+    public void iAmLoggedInSlowedDown() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        StepdefData.getLoginPage().StandardUserLogin();
+    }
+
+    @And("I click on the basket \\(Slowed down)")
+    public void iClickOnTheBasketSlowedDown() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        StepdefData.getInventoryPage().goToCart(); //Default use of InventoryPage
+    }
+
+    @And("I am going through with a purchase \\(Slowed down)")
+    public void iAmGoingThroughWithAPurchaseSlowedDown() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        StepdefData.getCartPage().goToCheckoutStep1Page();
+    }
+
+    @When("I confirm my purchase \\(Slowed down)")
+    public void iConfirmMyPurchaseSlowedDown() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        StepdefData.getCheckoutStep1Page().goToCheckoutStep2Page();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        StepdefData.getCheckoutStep2Page().goToConfirmationPage();
+    }
+
+    @Then("The website should thank me for my order and say it is on the way \\(Slowed down)")
+    public void theWebsiteShouldThankMeForMyOrderAndSayItIsOnTheWaySlowedDown() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-complete.html", StepdefData.getInventoryPage().getURL()); //Default use of InventoryPage
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @And("I add an item to the cart \\(Slowed down)")
+    public void iAddAnItemToTheCartSlowedDown() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        StepdefData.getInventoryPage().addToCart(0);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////
 }
