@@ -1,6 +1,5 @@
 package org.bddTest.stepDefs;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,9 +7,6 @@ import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.pom.*;
-import org.pom.inventoryPage.SLInventoryPage;
 
 public class CoreFunctionalityStepdefs {
 
