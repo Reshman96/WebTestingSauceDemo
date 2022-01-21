@@ -5,10 +5,11 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.pom.inventoryPage.SLInventoryPage;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public abstract class SitePage extends Page{
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public By menuButton = new By.ByClassName("bm-burger-button");
     public By hidden = new By.ByCssSelector("[aria-hidden='true']");
@@ -57,17 +58,32 @@ public abstract class SitePage extends Page{
 
     public String goToTwitterPage() {
         driver.findElement(twitterLink).click();
+        changeTab();
         return driver.getCurrentUrl();
     }
 
     public String goToFacebookPage() {
         driver.findElement(facebookLink).click();
+        changeTab();
         return driver.getCurrentUrl();
     }
 
     public String goToLinkedInPage() {
         driver.findElement(linkedInLink).click();
+        changeTab();
         return driver.getCurrentUrl();
+    }
+
+    private void changeTab() {
+        String originalTab = driver.getWindowHandle();
+        Set<String> handles = driver.getWindowHandles();
+        System.out.println(handles);
+        for(String tab : handles) {
+            if (!originalTab.equals(tab)) {
+                driver.switchTo().window(tab);
+                break;
+            }
+        }
     }
 
     public void resetAppState() {
