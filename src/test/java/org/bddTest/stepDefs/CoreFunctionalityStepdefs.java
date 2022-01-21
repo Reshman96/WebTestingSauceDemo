@@ -176,12 +176,12 @@ public class CoreFunctionalityStepdefs {
         StepdefData.getInventoryPage().addToCart(0);
     }
 
-    @And("I add the two item to the cart")
+    @And("I add the second item to the cart")
     public void iAddTheTwoItemToTheCart() {
         StepdefData.getInventoryPage().addToCart(1);
     }
 
-    @And("I add the three item to the cart")
+    @And("I add the third item to the cart")
     public void iAddTheThreeItemToTheCart() {
         StepdefData.getInventoryPage().addToCart(2);
     }
