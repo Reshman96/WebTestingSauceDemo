@@ -25,8 +25,6 @@ public class StepDefsUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @After

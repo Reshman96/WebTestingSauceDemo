@@ -57,9 +57,10 @@ public class DriversFactory {
     public static WebDriver getWebDriver() {
         switch (browser) {
             case CHROME:
-                ChromeOptions chromeOptions = new ChromeOptions();
-                //options.setHeadless(true);
-                return new ChromeDriver(chromeOptions);
+                ChromeOptions options = new ChromeOptions();
+                options.setHeadless(true);
+                return new ChromeDriver(options);
+
             case FIREFOX:
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 return new FirefoxDriver(firefoxOptions);

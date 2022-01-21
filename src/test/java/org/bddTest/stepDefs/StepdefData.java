@@ -9,7 +9,6 @@ public class StepdefData {
     private static SLCheckoutStep2Page checkoutStep2Page;
     private static SLInventoryPage inventoryPage;
     private static SLIndividualItemPage individualItemPage;
-    private static SitePage sitePage;
     private static SLCartPage cartPage;
     private static SLConfirmationOfOrderPage confirmationPage;
     private static SlLoginPage loginPage;
@@ -38,10 +37,6 @@ public class StepdefData {
 
     public static SLIndividualItemPage getIndividualItemPage() {
         return individualItemPage;
-    }
-
-    public static SitePage getSitePage() {
-        return sitePage;
     }
 
     public static SLCartPage getCartPage() {
