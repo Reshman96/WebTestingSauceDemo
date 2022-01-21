@@ -10,7 +10,7 @@ Feature: As a shopper I want to be able to add or remove my product from cart
 
   Scenario: Adding an item to empty cart
     When I click on add to cart button
-    And I go to cart page
+    And I click on cart image
     Then My item is in the cart
 
   Scenario: Removing an item from the cart
@@ -21,9 +21,9 @@ Feature: As a shopper I want to be able to add or remove my product from cart
   Scenario: Removing an item from the cart
     When I click on add to cart button
     And I click on remove button
-    And I go to cart page
+    And I click on cart image
     Then The cart is empty
 
-
-
-
+    Scenario: Go to cart page
+      When I click on cart image
+      Then I am on the cart page
