@@ -3,10 +3,8 @@ package org.pom;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.pom.inventoryPage.SLInventoryPage;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public abstract class SitePage extends Page{
@@ -60,12 +58,20 @@ public abstract class SitePage extends Page{
         return new SLCartPage(driver);
     }
 
+//    public int getNumberOfCartItems(){
+////        int numberOfElements = 0;
+////        List<WebElement> itemsInCart = driver.findElements(shoppingCartBadge);
+////        for (WebElement ignored : itemsInCart){
+////            numberOfElements++;
+////        }
+////        return numberOfElements;
+////    }
+
     public int getNumberOfCartItems(){
-        int numberOfElements = 0;
-        List<WebElement> itemsInCart = driver.findElements(shoppingCartBadge);
-        for (WebElement ignored : itemsInCart){
-            numberOfElements++;
+        try {
+            return Integer.parseInt(driver.findElement(shoppingCartBadge).getText());
+        } catch (NoSuchElementException e) {
+            return 0;
         }
-        return numberOfElements;
     }
 }
