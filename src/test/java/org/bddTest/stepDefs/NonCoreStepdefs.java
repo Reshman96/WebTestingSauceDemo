@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 
 public class NonCoreStepdefs {
     private WebDriver driver;
+    private String twitterURL, facebookURL, linkedInURL;
 
     @Before(order = 2)
     public void setup() {
@@ -70,32 +71,32 @@ public class NonCoreStepdefs {
 
     @When("I click on the twitter icon")
     public void iClickOnTheTwitterIcon() {
-        StepdefData.getInventoryPage().goToTwitterPage();
+        twitterURL = StepdefData.getInventoryPage().goToTwitterPage();
     }
 
     @Then("I go to the company's twitter page")
     public void iGoToTheCompanySTwitterPage() {
-        Assertions.assertEquals("https://twitter.com/saucelabs", StepdefData.getInventoryPage().getURL());
+        Assertions.assertEquals("https://twitter.com/saucelabs", twitterURL);
     }
 
     @When("I click on the facebook icon")
     public void iClickOnTheFacebookIcon() {
-        StepdefData.getInventoryPage().goToFacebookPage();
+        facebookURL = StepdefData.getInventoryPage().goToFacebookPage();
     }
 
     @Then("I go to the company's facebook page")
     public void iGoToTheCompanySFacebookPage() {
-        Assertions.assertEquals("https://www.facebook.com/saucelabs", StepdefData.getInventoryPage().getURL());
+        Assertions.assertEquals("https://www.facebook.com/saucelabs", facebookURL);
     }
 
     @When("I click on the linkedin icon")
     public void iClickOnTheLinkedinIcon() {
-        StepdefData.getInventoryPage().goToLinkedInPage();
+        linkedInURL = StepdefData.getInventoryPage().goToLinkedInPage();
     }
 
     @Then("I go to the company's linkedin page")
     public void iGoToTheCompanySLinkedinPage() {
-        Assertions.assertEquals("https://www.linkedin.com/company/sauce-labs/", StepdefData.getInventoryPage().getURL());
+        Assertions.assertEquals("https://www.linkedin.com/company/sauce-labs/", linkedInURL);
     }
 
     @When("I click on the about option on the Hamburger menu")
