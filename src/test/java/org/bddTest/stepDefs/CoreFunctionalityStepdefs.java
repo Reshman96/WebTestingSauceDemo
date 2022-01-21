@@ -1,12 +1,10 @@
 package org.bddTest.stepDefs;
 
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.DriversFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.openqa.selenium.NoSuchElementException;
@@ -99,8 +97,8 @@ public class CoreFunctionalityStepdefs {
         StepdefData.getIndividualItemPage().removeItemFromCart();
     }
 
-    @And("I go to cart page")
-    public void iGoToCartPage() {
+    @And("I click on cart image")
+    public void IClickOnCartImage() {
         StepdefData.getIndividualItemPage().goToCartPage();
     }
 
