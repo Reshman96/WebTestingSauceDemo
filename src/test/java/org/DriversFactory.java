@@ -114,6 +114,11 @@ public class DriversFactory {
         }
         throw new IllegalArgumentException();
     }
+
+    public static BrowsersEnums getBrowser() {
+        return browser;
+    }
+
     public enum BrowsersEnums {
         CHROME, FIREFOX, IE, EDGE, OPERA
     }
