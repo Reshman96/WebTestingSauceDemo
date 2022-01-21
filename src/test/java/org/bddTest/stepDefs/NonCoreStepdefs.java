@@ -70,32 +70,32 @@ public class NonCoreStepdefs {
 
     @When("I click on the twitter icon")
     public void iClickOnTheTwitterIcon() {
-        //needs SitePage implementation
+        StepdefData.getInventoryPage().goToTwitterPage();
     }
 
     @Then("I go to the company's twitter page")
     public void iGoToTheCompanySTwitterPage() {
-        //needs SitePage implementation
+        Assertions.assertEquals("https://twitter.com/saucelabs", StepdefData.getInventoryPage().getURL());
     }
 
     @When("I click on the facebook icon")
     public void iClickOnTheFacebookIcon() {
-        //needs SitePage implementation
+        StepdefData.getInventoryPage().goToFacebookPage();
     }
 
     @Then("I go to the company's facebook page")
     public void iGoToTheCompanySFacebookPage() {
-        //needs SitePage implementation
+        Assertions.assertEquals("https://www.facebook.com/saucelabs", StepdefData.getInventoryPage().getURL());
     }
 
     @When("I click on the linkedin icon")
     public void iClickOnTheLinkedinIcon() {
-        //needs SitePage implementation
+        StepdefData.getInventoryPage().goToLinkedInPage();
     }
 
     @Then("I go to the company's linkedin page")
     public void iGoToTheCompanySLinkedinPage() {
-        //needs SitePage implementation
+        Assertions.assertEquals("https://www.linkedin.com/company/sauce-labs/", StepdefData.getInventoryPage().getURL());
     }
 
     @When("I click on the about option on the Hamburger menu")
@@ -115,12 +115,12 @@ public class NonCoreStepdefs {
 
     @Then("I remove all the items from the basket")
     public void iRemoveAllTheItemsFromTheBasket() {
-        //needs SitePage implementation
+        Assertions.assertEquals(0, StepdefData.getInventoryPage().getNumberOfCartItems());
     }
 
     @Then("I should be able to view whats in my basket")
     public void iShouldBeAbleToViewWhatsInMyBasket() {
-        //needs SitePage implementation
+        Assertions.assertEquals("https://www.saucedemo.com/cart.html", StepdefData.getCartPage().getURL());
     }
 
     @Then("I should go to the checkout step 2 page")
@@ -146,6 +146,7 @@ public class NonCoreStepdefs {
     @When("I click on the third item in checkoutStep2")
     public void iClickOnTheThirdItemInCheckoutStep2() {
         StepdefData.getInventoryPage().goToCart().goToCheckoutStep1Page().goToCheckoutStep2Page().goToIndividualItemPage(2);
+    }
       
     @And("I click to reset the app state")
     public void iClickToResetTheAppState() {
@@ -156,4 +157,5 @@ public class NonCoreStepdefs {
     public void thePageStateWillBeReset() {
         Assertions.assertEquals(0, StepdefData.getInventoryPage().goToCart().getNumberOfCartItems());
     }
+
 }
