@@ -3,11 +3,7 @@ package org.bddTest.stepDefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.DriversFactory;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.WebDriver;
-import org.pom.SlLoginPage;
-import org.pom.inventoryPage.SLInventoryPage;
 
 public class LoginStepdefs {
 
