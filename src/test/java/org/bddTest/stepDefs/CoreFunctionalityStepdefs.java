@@ -163,7 +163,8 @@ public class CoreFunctionalityStepdefs {
 
     @Then("The website should thank me for my order and say it is on the way")
     public void theWebsiteShouldThankMeForMyOrderAndSayItIsOnTheWay() {
-        Assertions.assertEquals("https://www.saucedemo.com/checkout-step-two.html", StepdefData.getInventoryPage().getURL()); //Default use of InventoryPage
+        StepdefData.getCheckoutStep2Page().goToConfirmationPage();
+        Assertions.assertEquals("https://www.saucedemo.com/checkout-complete.html", StepdefData.getInventoryPage().getURL()); //Default use of InventoryPage
     }
 
     @Then("I will be on the inventory page")
@@ -184,5 +185,10 @@ public class CoreFunctionalityStepdefs {
     @And("I add the third item to the cart")
     public void iAddTheThreeItemToTheCart() {
         StepdefData.getInventoryPage().addToCart(2);
+    }
+
+    @When("I add an item to the cart")
+    public void iAddAnItemToTheCart() {
+        StepdefData.getInventoryPage().addToCart(0);
     }
 }
