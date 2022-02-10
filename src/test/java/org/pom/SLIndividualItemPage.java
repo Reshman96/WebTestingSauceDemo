@@ -5,14 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.pom.inventoryPage.SLInventoryPage;
 
 public class SLIndividualItemPage extends SitePage {
-    private WebDriver driver;
-    private By addItemToCart = new By.ByCssSelector(".btn.btn_primary.btn_small.btn_inventory");
-    private By removeItemFromCart = new By.ByCssSelector(".btn.btn_secondary.btn_small.btn_inventory");
-    private By productName = new By.ByCssSelector(".inventory_details_name.large_size");
-    private By productDescription = new By.ByCssSelector(".inventory_details_desc.large_size");
-    private By productPrice = new By.ByClassName("inventory_details_price");
-    private By goToCart = new By.ByClassName("shopping_cart_link");
-    private By goToInventory = new By.ById("back-to-products");
+    private final WebDriver driver;
+    private final By addItemToCart = new By.ByCssSelector(".btn.btn_primary.btn_small.btn_inventory");
+    private final By removeItemFromCart = new By.ByCssSelector(".btn.btn_secondary.btn_small.btn_inventory");
+    private final By productName = new By.ByCssSelector(".inventory_details_name.large_size");
+    private final By productDescription = new By.ByCssSelector(".inventory_details_desc.large_size");
+    private final By productPrice = new By.ByClassName("inventory_details_price");
+    private final By goToCart = new By.ByClassName("shopping_cart_link");
+    private final By goToInventory = new By.ById("back-to-products");
 
     public SLIndividualItemPage(WebDriver driver) {
         super(driver);
