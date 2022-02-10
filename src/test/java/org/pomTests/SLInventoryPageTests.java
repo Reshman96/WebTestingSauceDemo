@@ -75,7 +75,7 @@ public class SLInventoryPageTests {
     }
 
     @AfterAll
-    static void teardownAll() {
+    static void tearDownAll() {
         driver.quit();
     }
 }
