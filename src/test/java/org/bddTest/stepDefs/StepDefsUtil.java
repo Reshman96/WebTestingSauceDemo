@@ -28,7 +28,7 @@ public class StepDefsUtil {
     }
 
     @After
-    public void teardown() {
+    public void tearDown() {
         driver.quit();
         driverService.stop();
     }

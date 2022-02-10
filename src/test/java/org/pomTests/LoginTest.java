@@ -52,7 +52,7 @@ public class LoginTest {
     }
 
     @AfterAll
-    static void teardownAll() {
+    static void tearDownAll() {
         driver.quit();
     }
 }

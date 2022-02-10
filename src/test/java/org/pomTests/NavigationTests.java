@@ -44,7 +44,7 @@ public class NavigationTests {
 
 
     @AfterAll
-    static void teardownAll() {
+    static void tearDownAll() {
         driver.quit();
     }
 }

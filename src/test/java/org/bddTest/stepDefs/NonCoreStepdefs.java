@@ -5,17 +5,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.PomUtility;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
 
 public class NonCoreStepdefs {
     private WebDriver driver;
@@ -168,7 +160,7 @@ public class NonCoreStepdefs {
         Assertions.assertEquals(0, StepdefData.getInventoryPage().goToCart().getNumberOfCartItems());
     }
 
-    //EXAMPLE ONES//////////////////////////////
+    //EXAMPLE ONES//
 
     @Given("I am logged in \\(Slowed down)")
     public void iAmLoggedInSlowedDown() {
@@ -240,5 +232,4 @@ public class NonCoreStepdefs {
         }
         StepdefData.getInventoryPage().addToCart(0);
     }
-    /////////////////////////////////////////////////////////////////////////////////////
 }
